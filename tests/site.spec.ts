@@ -23,7 +23,7 @@ test("conteúdo, imagens, links de agendamento e SEO local", async ({
   expect(json.telephone).toBe("+5511959389897");
   expect(json).not.toHaveProperty("aggregateRating");
   const links = await page
-    .locator('a[href*="wa.me"]')
+    .locator('a[href^="https://wa.me/5511959389897"]')
     .evaluateAll((elements) =>
       elements.map((el) => (el as HTMLAnchorElement).href),
     );

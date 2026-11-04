@@ -909,7 +909,14 @@ export default function Site() {
             © {new Date().getFullYear()} Espaço Martins. Todos os direitos
             reservados.
           </span>
-          <span>Feito para acolher.</span>
+          <a
+            href="https://wa.me/5519992483529"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Desenvolvido por Webmax — falar com Flávia pelo WhatsApp"
+          >
+            Desenvolvido por Webmax
+          </a>
         </div>
       </footer>
       <a
