@@ -12,57 +12,42 @@ export function TherapyArt({
   const x = (scene.index % 2) * 512;
   const y = Math.floor(scene.index / 2) * 384;
   return (
-    <svg
-      className={`therapy-art ${className}`}
-      viewBox="0 0 512 384"
-      preserveAspectRatio="xMidYMid slice"
-      role="img"
-      aria-label={scene.alt}
-    >
-      <image
-        href="/images/terapias-ilustrativas.webp"
-        x={-x}
-        y={-y}
-        width="1024"
-        height="1536"
-      />
-      <rect
-        x="16"
-        y="347"
-        width="174"
-        height="23"
-        fill="#faf8f3"
-        fillOpacity=".94"
-      />
-      <text
-        x="27"
-        y="362"
-        fill="#354725"
-        fontSize="9"
-        fontFamily="Arial,sans-serif"
-        letterSpacing="1"
+    <span className={`therapy-art ${className}`}>
+      <svg
+        className="therapy-art__scene"
+        viewBox="0 0 512 384"
+        preserveAspectRatio="xMidYMid slice"
+        role="img"
+        aria-label={scene.alt}
       >
-        IMAGEM ILUSTRATIVA · IA
-      </text>
-    </svg>
+        <image
+          href="/images/terapias-ilustrativas.webp"
+          x={-x}
+          y={-y}
+          width="1024"
+          height="1536"
+        />
+      </svg>
+      <span className="therapy-art__caption">Imagem ilustrativa · IA</span>
+    </span>
   );
 }
 const scenes: Record<string, { index: number; alt: string }> = {
   relax: {
     index: 0,
-    alt: "Imagem ilustrativa gerada por IA: mãos em uma massagem relaxante nas costas",
+    alt: "Imagem ilustrativa gerada por IA: terapeuta homem realizando uma massagem relaxante nas costas",
   },
   sport: {
     index: 1,
-    alt: "Imagem ilustrativa gerada por IA: massagem na panturrilha de uma pessoa com roupa esportiva",
+    alt: "Imagem ilustrativa gerada por IA: terapeuta homem realizando massagem na panturrilha de uma pessoa com roupa esportiva",
   },
   shiatsu: {
     index: 2,
-    alt: "Imagem ilustrativa gerada por IA: pressão manual sobre o ombro por cima de uma camiseta",
+    alt: "Imagem ilustrativa gerada por IA: terapeuta homem aplicando pressão manual sobre o ombro por cima de uma camiseta",
   },
   feet: {
     index: 3,
-    alt: "Imagem ilustrativa gerada por IA: mãos aplicando pressão no arco de um pé",
+    alt: "Imagem ilustrativa gerada por IA: terapeuta homem aplicando pressão no arco de um pé",
   },
   cups: {
     index: 4,
@@ -70,14 +55,14 @@ const scenes: Record<string, { index: number; alt: string }> = {
   },
   stones: {
     index: 5,
-    alt: "Imagem ilustrativa gerada por IA: mão posicionando uma pedra de massagem sobre as costas",
+    alt: "Imagem ilustrativa gerada por IA: terapeuta homem posicionando uma pedra de massagem sobre as costas",
   },
   fascia: {
     index: 6,
-    alt: "Imagem ilustrativa gerada por IA: técnica manual com antebraço sobre a musculatura das costas",
+    alt: "Imagem ilustrativa gerada por IA: terapeuta homem aplicando técnica manual com antebraço sobre a musculatura das costas",
   },
   mobility: {
     index: 7,
-    alt: "Imagem ilustrativa gerada por IA: mãos apoiando um ombro e um braço vestido",
+    alt: "Imagem ilustrativa gerada por IA: mãos de terapeuta homem apoiando um ombro e um braço vestido",
   },
 };

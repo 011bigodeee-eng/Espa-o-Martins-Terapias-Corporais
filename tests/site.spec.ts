@@ -177,6 +177,75 @@ test("galeria: ampliação, setas, fechamento e foco", async ({ page }) => {
   await expect(opener).toBeFocused();
 });
 
+test("liberação miofascial: conteúdo, ações e proporções do redesign", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const section = page.locator("#liberacao-miofascial");
+  await expect(section.getByRole("heading")).toHaveText(
+    "Movimento, cuidado e atenção ao seu corpo.",
+  );
+  await expect(
+    section.getByText("Liberação miofascial", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    section.getByRole("link", { name: "Agendar atendimento", exact: true }),
+  ).toHaveAttribute("href", /libera%C3%A7%C3%A3o%20miofascial/);
+  await section.getByRole("button", { name: "Conhecer a técnica" }).click();
+  await expect(page.getByRole("dialog").getByRole("heading")).toHaveText(
+    "Liberação miofascial",
+  );
+  await page.keyboard.press("Escape");
+  for (const width of [320, 375, 390, 430, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await section.scrollIntoViewIfNeeded();
+    await section
+      .getByRole("link", { name: "Agendar atendimento", exact: true })
+      .scrollIntoViewIfNeeded();
+    await expect(page.locator(".floating-whatsapp")).not.toHaveClass(
+      /floating-visible/,
+    );
+    const layout = await section.evaluate((el) => {
+      const photo = el.querySelector(".fascia-art")!.getBoundingClientRect();
+      const copy = el.querySelector(".fascia-copy")!.getBoundingClientRect();
+      const label = el
+        .querySelector(".therapy-art__caption")!
+        .getBoundingClientRect();
+      const buttons = Array.from(
+        el.querySelectorAll(".fascia-actions .button"),
+      ).map((button) => {
+        const rect = button.getBoundingClientRect();
+        return { height: rect.height, left: rect.left, right: rect.right };
+      });
+      return {
+        photo: {
+          top: photo.top,
+          bottom: photo.bottom,
+          width: photo.width,
+          height: photo.height,
+        },
+        copy: { top: copy.top, bottom: copy.bottom, width: copy.width },
+        labelHeight: label.height,
+        buttons,
+        headingFont: getComputedStyle(el.querySelector("h2")!).fontFamily,
+      };
+    });
+    expect(layout.headingFont).toContain("Manrope");
+    expect(layout.labelHeight).toBeLessThan(28);
+    for (const button of layout.buttons)
+      expect(button.height).toBeGreaterThanOrEqual(51);
+    if (width > 760) {
+      expect(Math.abs(layout.photo.width - layout.copy.width)).toBeLessThan(2);
+      expect(Math.abs(layout.photo.bottom - layout.copy.bottom)).toBeLessThan(
+        2,
+      );
+    } else {
+      expect(layout.copy.top).toBeGreaterThanOrEqual(layout.photo.bottom - 1);
+      expect(layout.photo.height).toBeLessThan(350);
+    }
+  }
+});
+
 for (const width of [320, 375, 390, 430, 768, 1024, 1440, 1920]) {
   test(`layout sem overflow e navegação em ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });

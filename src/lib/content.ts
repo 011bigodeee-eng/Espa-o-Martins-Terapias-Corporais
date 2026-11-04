@@ -98,7 +98,7 @@ export const therapies = [
     category: "Mobilidade & conforto",
     message: "a liberação miofascial",
     description:
-      "Atenção aos tecidos que envolvem os músculos, com possíveis objetivos de mobilidade e conforto muscular.",
+      "Uma abordagem manual voltada às estruturas musculares e fasciais, respeitando as necessidades individuais e os objetivos de cada atendimento.",
     detail:
       "A fáscia é um tecido que envolve e conecta estruturas do corpo, incluindo os músculos. A liberação miofascial utiliza técnicas manuais sobre esses tecidos, com possíveis objetivos relacionados ao conforto muscular e à mobilidade. A proposta é individual e não garante resultados clínicos.",
     theme: "fascia",

@@ -15,9 +15,7 @@ import {
   ChevronRight,
   Instagram,
   MessageCircle,
-  Leaf,
   Hand,
-  MoveUpRight,
   Check,
   Expand,
 } from "lucide-react";
@@ -136,21 +134,27 @@ export default function Site() {
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [filter, setFilter] = useState("Todas");
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [bookingInView, setBookingInView] = useState(false);
   useEffect(() => {
     const scroll = () => setScrolled(window.scrollY > 50);
     scroll();
     window.addEventListener("scroll", scroll, { passive: true });
+    const visibleActions = new Set<Element>();
     const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        }),
-      { threshold: 0.09 },
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) visibleActions.add(entry.target);
+          else visibleActions.delete(entry.target);
+        }
+        setBookingInView(visibleActions.size > 0);
+      },
+      { rootMargin: "-80px 0px 0px 0px", threshold: 0.1 },
     );
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    document
+      .querySelectorAll(
+        '.button[href^="https://wa.me"], .fascia-actions .button',
+      )
+      .forEach((el) => observer.observe(el));
     return () => {
       window.removeEventListener("scroll", scroll);
       observer.disconnect();
@@ -274,11 +278,11 @@ export default function Site() {
 
         <div className="values-bar">
           <span>
-            <Leaf size={16} /> Cuidado individualizado
+            <Check size={16} /> Cuidado individualizado
           </span>
           <i />
           <span>
-            <Hand size={17} /> Acolhimento em cada toque
+            <Hand size={17} /> Terapias manuais
           </span>
           <i />
           <span>
@@ -306,10 +310,11 @@ export default function Site() {
               <span>Bem-vindo ao seu momento.</span>
             </div>
             <div className="about-seal">
-              <Leaf size={29} strokeWidth={1} />
+              <Hand size={26} strokeWidth={1.5} />
               <span>
-                ACOLHER
-                <br />É CUIDAR
+                CUIDADO
+                <br />
+                INDIVIDUAL
               </span>
             </div>
           </div>
@@ -317,13 +322,7 @@ export default function Site() {
             <span className="eyebrow">
               <span className="tiny-line" /> O ESSENCIAL É VOCÊ
             </span>
-            <h2 id="about-title">
-              Um espaço
-              <br />
-              pensado para
-              <br />
-              <em>cuidar de você.</em>
-            </h2>
+            <h2 id="about-title">Um espaço pensado para cuidar de você.</h2>
             <p>
               Entre o ritmo da cidade e o seu próprio tempo, existe um lugar
               para fazer uma pausa.
@@ -339,7 +338,7 @@ export default function Site() {
                 <h3>Martins</h3>
                 <span>Terapeuta Integrativo</span>
               </div>
-              <Leaf size={26} strokeWidth={1} />
+              <Hand size={24} strokeWidth={1.5} />
             </div>
             <a
               href={whatsapp()}
@@ -443,39 +442,43 @@ export default function Site() {
           </div>
         </section>
 
-        <section className="fascia" aria-labelledby="fascia-title">
-          <div className="fascia-art">
-            <TherapyArt theme="fascia" />
-          </div>
-          <div className="fascia-copy">
-            <span className="eyebrow">
-              <span className="tiny-line" /> UM OLHAR PARA O MOVIMENTO
-            </span>
-            <h2 id="fascia-title">
-              Seu corpo merece
-              <br />
-              <em>mais liberdade.</em>
-            </h2>
-            <span className="fascia-subtitle">Liberação miofascial</span>
-            <p>
-              Uma atenção especial aos tecidos que envolvem os músculos.
-              Técnicas manuais com possíveis objetivos de mobilidade e conforto
-              muscular, respeitando as necessidades de cada pessoa.
-            </p>
-            <div className="fascia-actions">
-              <Booking therapy="a liberação miofascial" light>
-                Conhecer esse atendimento
-              </Booking>
-              <button
-                className="text-link light-link"
-                onClick={() => setSelected(therapies[6])}
-              >
-                Entenda a técnica <Plus size={15} />
-              </button>
+        <section
+          className="fascia"
+          id="liberacao-miofascial"
+          aria-labelledby="fascia-title"
+        >
+          <div className="fascia-inner container">
+            <div className="fascia-art">
+              <TherapyArt theme="fascia" />
             </div>
-            <span className="fascia-caption">
-              Imagem ilustrativa gerada por IA · Atendimento individualizado.
-            </span>
+            <div className="fascia-copy">
+              <span className="eyebrow">
+                <span className="tiny-line" /> UM OLHAR PARA O MOVIMENTO
+              </span>
+              <h2 id="fascia-title">
+                Movimento, cuidado e atenção ao seu corpo.
+              </h2>
+              <span className="fascia-subtitle">Liberação miofascial</span>
+              <p>
+                Uma abordagem manual voltada às estruturas musculares e
+                fasciais, respeitando as necessidades individuais e os objetivos
+                de cada atendimento.
+              </p>
+              <div className="fascia-actions">
+                <Booking therapy="a liberação miofascial">
+                  Agendar atendimento
+                </Booking>
+                <button
+                  className="button button-outline"
+                  onClick={() => setSelected(therapies[6])}
+                >
+                  Conhecer a técnica <Plus size={16} />
+                </button>
+              </div>
+              <span className="fascia-caption">
+                Atendimento individualizado para homens e mulheres.
+              </span>
+            </div>
           </div>
         </section>
 
@@ -910,7 +913,9 @@ export default function Site() {
         </div>
       </footer>
       <a
-        className={`floating-whatsapp ${scrolled ? "floating-visible" : ""}`}
+        className={`floating-whatsapp ${scrolled && !bookingInView ? "floating-visible" : ""}`}
+        tabIndex={scrolled && !bookingInView ? 0 : -1}
+        aria-hidden={!scrolled || bookingInView}
         href={whatsapp()}
         target="_blank"
         rel="noopener noreferrer"

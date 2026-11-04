@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   icons: { icon: "/icon.svg" },
 };
 export const viewport: Viewport = {
-  themeColor: "#354725",
+  themeColor: "#303F27",
   width: "device-width",
   initialScale: 1,
 };
