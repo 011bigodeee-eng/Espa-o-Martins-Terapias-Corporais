@@ -1,0 +1,269 @@
+import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+
+test("conteúdo, imagens, links de agendamento e SEO local", async ({
+  page,
+  request,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Cuidar de vocêé o que nosmove.",
+  );
+  await expect(page).toHaveTitle(/Terapias Corporais na Vila Mariana/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "pt-BR");
+  const json = JSON.parse(
+    await page.locator('script[type="application/ld+json"]').innerText(),
+  );
+  expect(json.address.streetAddress).toContain("conjunto 83");
+  expect(json.telephone).toBe("+5511959389897");
+  expect(json).not.toHaveProperty("aggregateRating");
+  const links = await page
+    .locator('a[href*="wa.me"]')
+    .evaluateAll((elements) =>
+      elements.map((el) => (el as HTMLAnchorElement).href),
+    );
+  expect(links.length).toBeGreaterThan(12);
+  for (const href of links) {
+    const url = new URL(href);
+    expect(url.pathname).toBe("/5511959389897");
+    expect(url.searchParams.get("text")).toContain(
+      "Conheci o Espaço Martins pelo site",
+    );
+  }
+  const relaxingLink = page.getByRole("link", {
+    name: "Agendar pelo WhatsApp: Massagem relaxante",
+    exact: true,
+  });
+  expect(
+    new URL((await relaxingLink.getAttribute("href"))!).searchParams.get(
+      "text",
+    ),
+  ).toContain("a massagem relaxante");
+  await page.locator("#galeria").scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      page
+        .locator("#galeria img")
+        .evaluateAll((images) =>
+          images.every(
+            (img) =>
+              (img as HTMLImageElement).complete &&
+              (img as HTMLImageElement).naturalWidth > 0,
+          ),
+        ),
+    )
+    .toBe(true);
+  for (const href of await page
+    .locator('a[href^="#"]')
+    .evaluateAll((elements) => elements.map((el) => el.getAttribute("href")))) {
+    expect(await page.locator(`[id="${href!.slice(1)}"]`).count(), href!).toBe(
+      1,
+    );
+  }
+  const robots = await request.get("/robots.txt");
+  expect(robots.ok()).toBe(true);
+  expect(await robots.text()).toContain("Allow: /");
+  const sitemap = await request.get("/sitemap.xml");
+  expect(sitemap.ok()).toBe(true);
+  expect(await sitemap.text()).toContain("urlset");
+  expect(errors).toEqual([]);
+});
+
+test("filtros, detalhes, FAQ, privacidade e mapa sob demanda", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Movimento", exact: true }).click();
+  await expect(page.locator(".therapy-card")).toHaveCount(1);
+  await expect(page.locator(".therapy-card h3")).toHaveText(
+    "Massagem desportiva",
+  );
+  await page.getByRole("button", { name: "Relaxamento", exact: true }).click();
+  await expect(page.locator(".therapy-card")).toHaveCount(3);
+  await page.getByRole("button", { name: "Todas", exact: true }).click();
+  await expect(page.locator(".therapy-card")).toHaveCount(6);
+  await page
+    .getByRole("button", {
+      name: "Saiba mais sobre Massagem relaxante",
+      exact: true,
+    })
+    .click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole("heading")).toHaveText("Massagem relaxante");
+  await expect(
+    dialog.getByRole("link", { name: "Agendar pelo WhatsApp" }),
+  ).toHaveAttribute("href", /massagem%20relaxante/);
+  await page.keyboard.press("Escape");
+  await expect(dialog).toHaveCount(0);
+  await expect(
+    page.getByRole("button", {
+      name: "Saiba mais sobre Massagem relaxante",
+      exact: true,
+    }),
+  ).toBeFocused();
+  await page
+    .locator(".biomechanics")
+    .getByRole("button", { name: "Saiba mais" })
+    .click();
+  await expect(page.getByRole("dialog").getByRole("heading")).toHaveText(
+    "Ajustes biomecânicos ortopédicos",
+  );
+  await expect(page.getByRole("dialog").getByRole("link")).toHaveAttribute(
+    "href",
+    /ajustes%20biomec%C3%A2nicos/,
+  );
+  await page.keyboard.press("Escape");
+  const question = page
+    .locator("summary")
+    .filter({ hasText: "Qual é a duração de uma sessão?" });
+  await question.click();
+  await expect(
+    page.getByText(
+      "A duração deve ser confirmada diretamente com o profissional",
+      { exact: false },
+    ),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Privacidade e dados", exact: true })
+    .click();
+  await expect(page.locator("#privacy-panel")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#privacy-panel")).not.toBeVisible();
+  expect(await page.locator("iframe").count()).toBe(0);
+  await page.route("https://www.google.com/maps**", (route) =>
+    route.fulfill({
+      body: "<html lang='pt-BR'><title>Mapa de teste</title><body>Mapa</body></html>",
+      contentType: "text/html",
+    }),
+  );
+  await page.getByRole("button", { name: "Explorar mapa interativo" }).click();
+  await expect(
+    page.getByTitle("Mapa: Espaço Martins na Vila Mariana"),
+  ).toBeVisible();
+});
+
+test("galeria: ampliação, setas, fechamento e foco", async ({ page }) => {
+  await page.goto("/");
+  const opener = page.getByRole("button", {
+    name: "Ampliar imagem: Sala de terapias",
+    exact: true,
+  });
+  await opener.click();
+  await expect(page.getByRole("dialog").getByRole("heading")).toHaveText(
+    "Sala de terapias",
+  );
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByRole("dialog").getByRole("heading")).toHaveText(
+    "Recepção",
+  );
+  await page
+    .getByRole("button", { name: "Próxima imagem", exact: true })
+    .click();
+  await expect(page.getByRole("dialog").getByRole("heading")).toHaveText(
+    "Ambiente de consulta",
+  );
+  await page.keyboard.press("ArrowLeft");
+  await expect(page.getByRole("dialog").getByRole("heading")).toHaveText(
+    "Recepção",
+  );
+  await page.getByRole("button", { name: "Fechar", exact: true }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect(opener).toBeFocused();
+});
+
+for (const width of [320, 375, 390, 430, 768, 1024, 1440, 1920]) {
+  test(`layout sem overflow e navegação em ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    const overflow = await page.evaluate(() => ({
+      scroll: document.documentElement.scrollWidth,
+      client: document.documentElement.clientWidth,
+    }));
+    expect(overflow.scroll).toBeLessThanOrEqual(overflow.client);
+    const outside = await page
+      .locator("h1,h2,h3,.button,summary")
+      .evaluateAll((elements) =>
+        elements
+          .filter((el) => {
+            const rect = el.getBoundingClientRect();
+            return (
+              rect.width > 0 &&
+              (rect.left < -1 ||
+                rect.right > document.documentElement.clientWidth + 1)
+            );
+          })
+          .map((el) => el.textContent),
+      );
+    expect(outside).toEqual([]);
+    if (width <= 760) {
+      await page.getByRole("button", { name: "Abrir menu" }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
+      await page
+        .getByRole("navigation", { name: "Navegação mobile" })
+        .getByRole("link", { name: /Terapias/ })
+        .click();
+      await expect(page.getByRole("dialog")).toHaveCount(0);
+      await expect(page).toHaveURL(/#terapias$/);
+    }
+    await page.locator("footer").scrollIntoViewIfNeeded();
+    expect(
+      await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth <=
+          document.documentElement.clientWidth,
+      ),
+    ).toBe(true);
+  });
+}
+
+test("acessibilidade WCAG automatizada: desktop, detalhes e mobile", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const desktop = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(desktop.violations).toEqual([]);
+  await page
+    .getByRole("button", { name: "Saiba mais sobre Shiatsu", exact: true })
+    .click();
+  const modal = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(modal.violations).toEqual([]);
+  await page.keyboard.press("Escape");
+  await page.setViewportSize({ width: 390, height: 844 });
+  const mobilePage = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(mobilePage.violations).toEqual([]);
+  await page.getByRole("button", { name: "Abrir menu" }).click();
+  const mobile = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(mobile.violations).toEqual([]);
+});
+
+test("abertura encerra em 1,5s e respeita movimento reduzido", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator(".intro")).toBeHidden({ timeout: 3000 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.reload();
+  await expect(page.locator(".intro")).toBeHidden();
+  expect(
+    await page
+      .locator("html")
+      .evaluate((el) => getComputedStyle(el).scrollBehavior),
+  ).toBe("auto");
+});
