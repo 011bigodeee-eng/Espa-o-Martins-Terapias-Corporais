@@ -26,7 +26,7 @@ Use o checkout existente: cada tarefa na nuvem já é isolada; não crie um work
 - `src/lib/content.ts`: estabelecimento, terapias, WhatsApp, FAQ, galeria e etapas de atendimento.
 - `src/lib/verified-content.ts`: biografia, registro, retrato, qualificações, eventos e depoimentos; campos profissionais vazios até confirmação; fotos recebidas e configuração central da marca.
 - `src/components/site.tsx`: composição, navegação, filtros, modais, lightbox e mapa.
-- `src/components/therapy-art.tsx`: fotografias oficiais de atendimento e fotos do ambiente identificadas, configurados em `verified-content.ts`.
+- `src/components/therapy-art.tsx`: fotografias oficiais de atendimento e ilustrações por IA identificadas, configurados em `verified-content.ts`.
 - `public/images/`: três fotografias fornecidas, sem alterações. Next.js gera tamanhos e formatos otimizados nas requisições.
 - `src/app/globals.css`: identidade visual, layouts e movimento reduzido.
 

@@ -28,18 +28,22 @@ export const officialBrand: { light: string | null; dark: string | null } = {
   dark: null,
 };
 
-// Imagens oficiais por técnica. A foto de reflexologia foi expressamente selecionada pela cliente.
+// Registros reais aprovados com cobertura e touca visíveis. O original de reflexologia é preservado em public/images.
 export const therapyPhotos: Record<string, { src: string; alt: string }> = {
-  feet: { src: "/images/atendimento-reflexologia.jpg", alt: "Martins realizando reflexologia podal, com as mãos sobre o pé do paciente e o corpo coberto por lençol" },
   relax: { src: "/images/atendimento-massagem.jpg", alt: "Martins realizando massagem nas costas; paciente com touca e corpo coberto por toalha" },
   cups: { src: "/images/atendimento-ventosas.jpg", alt: "Atendimento de ventosaterapia no Espaço Martins, com paciente usando touca e cobertura" },
 };
 
 // Fotos do ambiente não representam a execução das técnicas pendentes.
 export const therapyVenuePhotos: Record<string, { src: string; alt: string }> = {
-  sport: { src: "/images/sala.png", alt: "Sala de atendimento do Espaço Martins com maca preparada; fotografia do ambiente, sem demonstração de massagem desportiva" },
-  shiatsu: { src: "/images/recepcao.png", alt: "Recepção do Espaço Martins; fotografia do ambiente, sem demonstração de Shiatsu" },
-  stones: { src: "/images/consulta.png", alt: "Ambiente de acolhimento do Espaço Martins; fotografia do espaço, sem demonstração de pedras quentes" },
   fascia: { src: "/images/sala.png", alt: "Sala do Espaço Martins; fotografia do ambiente, sem demonstração de liberação miofascial" },
   mobility: { src: "/images/consulta.png", alt: "Ambiente do Espaço Martins; fotografia do espaço, sem demonstração de avaliação do movimento" },
+};
+
+// Ilustrações geradas por IA: não retratam Martins nem registros reais do espaço.
+export const therapyIllustrations: Record<string, { src: string; alt: string }> = {
+  sport: { src: "/images/ilustracao-desportiva.webp", alt: "Ilustração por IA de massagem desportiva: mãos pressionam a panturrilha, com paciente de touca e corpo coberto por toalha branca" },
+  shiatsu: { src: "/images/ilustracao-shiatsu.webp", alt: "Ilustração por IA de Shiatsu: pressão com as palmas sobre as costas cobertas por lençol, com paciente de touca" },
+  feet: { src: "/images/ilustracao-reflexologia.webp", alt: "Ilustração por IA de reflexologia podal: pressão com o polegar na planta do pé, paciente de touca e corpo coberto por lençol branco" },
+  stones: { src: "/images/ilustracao-pedras-quentes.webp", alt: "Ilustração por IA de massagem com pedras quentes: terapeuta desliza pedra escura nas costas, com paciente de touca e parte inferior coberta" },
 };

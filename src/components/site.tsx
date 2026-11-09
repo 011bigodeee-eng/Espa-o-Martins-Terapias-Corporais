@@ -26,6 +26,7 @@ import {
   authorizedTestimonials,
   verifiedProfile,
   therapyPhotos,
+  therapyIllustrations,
 } from "@/lib/verified-content";
 import {
   business,
@@ -427,7 +428,7 @@ export default function Site() {
                   ),
                 )}
               </div>
-              <span className="art-note">Fotos reais de atendimentos e do ambiente</span>
+              <span className="art-note">Atendimentos reais e imagens ilustrativas · IA</span>
             </div>
             <div className="therapy-grid" aria-live="polite">
               {filtered.map((therapy) => (
@@ -978,7 +979,7 @@ export default function Site() {
             </p>
             <Booking therapy={selected.message}>Agendar pelo WhatsApp</Booking>
             <span className="art-note">
-              {therapyPhotos[selected.theme] ? "Fotografia de atendimento no Espaço Martins." : "Foto do ambiente. Fotografia de atendimento desta técnica ainda não fornecida."}
+              {therapyPhotos[selected.theme] ? "Fotografia de atendimento no Espaço Martins." : therapyIllustrations[selected.theme] ? "Imagem ilustrativa gerada por IA. Não representa Martins ou um atendimento real do Espaço Martins." : "Foto do ambiente. Fotografia de atendimento desta técnica ainda não fornecida."}
             </span>
           </div>
         </Modal>

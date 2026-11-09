@@ -361,13 +361,15 @@ test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page 
 });
 
 
-test("seis cards com fotos reais, legendas honestas e grade responsiva", async ({ page }) => {
+test("seis cards com técnicas representadas, legendas honestas e grade responsiva", async ({ page }) => {
   await page.goto("/");
   await page.emulateMedia({ reducedMotion: "reduce" });
   const cards = page.locator("#terapias .therapy-card");
   await expect(cards).toHaveCount(6);
   await expect(page.getByText("O cuidado em foco.", { exact: true })).toHaveCount(0);
-  await expect(page.locator("#terapias .therapy-art--venue")).toHaveCount(3);
+  await expect(page.locator("#terapias .therapy-art--venue")).toHaveCount(0);
+  await expect(page.locator("#terapias .therapy-art--illustration")).toHaveCount(4);
+  await expect(page.locator("#terapias .therapy-art--treatment")).toHaveCount(2);
   for (const [width, columns] of [[390, 1], [820, 2], [1440, 3]]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const card of await cards.all()) {
