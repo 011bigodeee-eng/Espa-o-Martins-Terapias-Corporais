@@ -25,6 +25,7 @@ import { Testimonials } from "./testimonials";
 import {
   authorizedTestimonials,
   verifiedProfile,
+  therapyPhotos,
 } from "@/lib/verified-content";
 import {
   business,
@@ -128,6 +129,7 @@ function Modal({
 }
 
 export default function Site() {
+  const [activeSection, setActiveSection] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [selected, setSelected] = useState<Therapy | null>(null);
@@ -160,6 +162,14 @@ export default function Site() {
       observer.disconnect();
     };
   }, []);
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]) setActiveSection(visible[0].target.id);
+    }, { rootMargin: "-15% 0px -50% 0px", threshold: [0, 0.1, 0.5] });
+    nav.forEach(([, id]) => { const section = document.getElementById(id); if (section) observer.observe(section); });
+    return () => observer.disconnect();
+  }, []);
   const changeImage = (direction: number) =>
     setLightbox((index) =>
       index === null
@@ -183,22 +193,24 @@ export default function Site() {
         Ir para o conteúdo
       </a>
       <div className="intro" aria-hidden="true">
-        <Brand compact />
+        <Brand compact dark />
         <span>Cuidar de você é o que nos move!</span>
         <i />
       </div>
       <header className={`header ${scrolled ? "header-scrolled" : ""}`}>
         <div className="header-inner">
           <a
-            href="#inicio"
-            aria-label="Espaço Martins — início"
+            href={whatsapp()}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Conversar com Espaço Martins pelo WhatsApp"
             className="brand-link"
           >
             <Brand />
           </a>
           <nav className="desktop-nav" aria-label="Navegação principal">
             {nav.map(([label, id]) => (
-              <a key={id} href={`#${id}`}>
+              <a key={id} href={`#${id}`} aria-current={activeSection === id ? "location" : undefined}>
                 {label}
               </a>
             ))}
@@ -232,7 +244,7 @@ export default function Site() {
               fill
               priority
               sizes="(max-width: 760px) 100vw, 75vw"
-              quality={85}
+              quality={75}
             />
           </div>
           <div className="hero-shade" />
@@ -290,6 +302,26 @@ export default function Site() {
           </span>
         </div>
 
+        <section className="profile-intro section-space container" id="martins" aria-labelledby="profile-title">
+          <figure className="profile-photo reveal">
+            <Image src={verifiedProfile.portrait!.src} alt={verifiedProfile.portrait!.alt} width={960} height={1280} sizes="(max-width: 760px) 90vw, 42vw" />
+            <figcaption>Martins · Espaço Martins</figcaption>
+          </figure>
+          <div className="profile-copy reveal">
+            <span className="eyebrow"><span className="tiny-line" /> CONHEÇA O MARTINS</span>
+            <h2 id="profile-title">{verifiedProfile.professionalName}</h2>
+            <p>{verifiedProfile.biography || "Um encontro com quem cuida de você, no Espaço Martins."}</p>
+            {verifiedProfile.institutionalText ? <p>{verifiedProfile.institutionalText}</p> : <p className="profile-pending">Apresentação provisória. O texto institucional oficial será disponibilizado em breve.</p>}
+            {verifiedProfile.qualifications.length > 0 && <ul>{verifiedProfile.qualifications.map(item => <li key={item}>{item}</li>)}</ul>}
+            {verifiedProfile.registration && <p>{verifiedProfile.registration}</p>}
+            {[...verifiedProfile.events, ...verifiedProfile.educationalResources].map(item => <a className="text-link" key={item.url} href={item.url} target="_blank" rel="noopener noreferrer">{item.title}<ArrowUpRight size={16} /></a>)}
+            <a className="text-link" href={whatsapp()} target="_blank" rel="noopener noreferrer">Converse com Martins <ArrowUpRight size={17} /></a>
+            <details className="profile-more"><summary>Mais um olhar sobre o Martins</summary>
+              <Image src="/images/martins-coluna.jpg" alt="Martins segurando um modelo anatômico da coluna vertebral" width={1254} height={1254} sizes="(max-width: 760px) 85vw, 35vw" />
+            </details>
+          </div>
+        </section>
+
         <section
           className="about section-space container"
           id="espaco"
@@ -302,7 +334,7 @@ export default function Site() {
                 alt={gallery[1].alt}
                 fill
                 sizes="(max-width: 760px) 90vw, 42vw"
-                quality={85}
+                quality={75}
               />
             </div>
             <div className="image-index">
@@ -336,7 +368,7 @@ export default function Site() {
               <span className="professional-mark">M.</span>
               <div>
                 <h3>Martins</h3>
-                <span>Terapeuta Integrativo</span>
+                <span>Espaço Martins · Terapias Corporais</span>
               </div>
               <Hand size={24} strokeWidth={1.5} />
             </div>
@@ -395,7 +427,7 @@ export default function Site() {
                   ),
                 )}
               </div>
-              <span className="art-note">Imagens ilustrativas · IA</span>
+              <span className="art-note">Fotos do espaço · imagens em atualização</span>
             </div>
             <div className="therapy-grid" aria-live="polite">
               {filtered.map((therapy) => (
@@ -616,7 +648,7 @@ export default function Site() {
                       ? "(max-width: 760px) 90vw, 50vw"
                       : "(max-width: 760px) 90vw, 25vw"
                   }
-                  quality={85}
+                  quality={75}
                 />
                 <span className="gallery-overlay" />
                 <span className="gallery-caption">
@@ -678,61 +710,6 @@ export default function Site() {
           </ul>
         </section>
 
-        {(verifiedProfile.biography ||
-          verifiedProfile.registration ||
-          verifiedProfile.portrait ||
-          verifiedProfile.qualifications.length > 0 ||
-          verifiedProfile.events.length > 0 ||
-          verifiedProfile.educationalResources.length > 0) && (
-          <section
-            className="verified-profile section-space container"
-            aria-labelledby="profile-title"
-          >
-            <div>
-              <span className="eyebrow">CONHEÇA O PROFISSIONAL</span>
-              <h2 id="profile-title">
-                Martins
-                <br />
-                <em>Terapeuta Integrativo</em>
-              </h2>
-              {verifiedProfile.biography && <p>{verifiedProfile.biography}</p>}
-              {verifiedProfile.registration && (
-                <p>{verifiedProfile.registration}</p>
-              )}
-              {verifiedProfile.qualifications.length > 0 && (
-                <ul>
-                  {verifiedProfile.qualifications.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              )}
-              {[
-                ...verifiedProfile.events,
-                ...verifiedProfile.educationalResources,
-              ].map((item) => (
-                <a
-                  className="text-link"
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  key={item.url}
-                >
-                  {item.title}
-                  <ArrowUpRight size={16} />
-                </a>
-              ))}
-            </div>
-            {verifiedProfile.portrait && (
-              <Image
-                src={verifiedProfile.portrait.src}
-                alt={verifiedProfile.portrait.alt}
-                width={450}
-                height={550}
-                sizes="(max-width: 760px) 90vw, 40vw"
-              />
-            )}
-          </section>
-        )}
         <Testimonials items={authorizedTestimonials} />
         <section
           className="faq-section section-space container"
@@ -863,8 +840,8 @@ export default function Site() {
 
       <footer className="footer">
         <div className="container footer-main">
-          <a href="#inicio" aria-label="Voltar ao início">
-            <Brand />
+          <a href={whatsapp()} target="_blank" rel="noopener noreferrer" aria-label="Conversar com Espaço Martins pelo WhatsApp">
+            <Brand dark />
           </a>
           <div className="footer-contact">
             <span className="eyebrow">VENHA NOS CONHECER</span>
@@ -880,7 +857,7 @@ export default function Site() {
           <div className="footer-nav">
             <span className="eyebrow">EXPLORE</span>
             {nav.map(([label, id]) => (
-              <a key={id} href={`#${id}`}>
+              <a key={id} href={`#${id}`} aria-current={activeSection === id ? "location" : undefined}>
                 {label}
               </a>
             ))}
@@ -1001,8 +978,7 @@ export default function Site() {
             </p>
             <Booking therapy={selected.message}>Agendar pelo WhatsApp</Booking>
             <span className="art-note">
-              Imagem ilustrativa gerada por IA. Não é fotografia de atendimento
-              no espaço.
+              {therapyPhotos[selected.theme] ? "Fotografia de atendimento no Espaço Martins." : "Fotografia oficial desta técnica em breve."}
             </span>
           </div>
         </Modal>

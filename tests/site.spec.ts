@@ -246,7 +246,7 @@ test("liberação miofascial: conteúdo, ações e proporções do redesign", as
   }
 });
 
-for (const width of [320, 375, 390, 430, 768, 1024, 1440, 1920]) {
+for (const width of [320, 360, 375, 390, 430, 768, 820, 1024, 1440, 1920]) {
   test(`layout sem overflow e navegação em ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
@@ -335,4 +335,27 @@ test("abertura encerra em 1,5s e respeita movimento reduzido", async ({
       .locator("html")
       .evaluate((el) => getComputedStyle(el).scrollBehavior),
   ).toBe("auto");
+});
+
+
+test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page }) => {
+  await page.goto("/");
+  const profile = page.locator("#martins");
+  await expect(profile.getByRole("heading", { name: "Martins", exact: true })).toBeVisible();
+  await expect(profile.getByText(/Apresentação provisória/)).toBeVisible();
+  expect(await page.locator("main > section").evaluateAll(sections => sections.slice(0, 3).map(section => section.id))).toEqual(["inicio", "martins", "espaco"]);
+  await expect(page.locator(".header .brand-link")).toHaveAttribute("href", /^https:\/\/wa.me\/5511959389897/);
+  await expect(page.locator('image[href*="terapias-ilustrativas"]')).toHaveCount(0);
+  await profile.locator("summary").click();
+  await expect(profile.getByAltText("Martins segurando um modelo anatômico da coluna vertebral")).toBeVisible();
+  for (const width of [360, 390, 768, 820, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await profile.scrollIntoViewIfNeeded();
+    const bounds = await profile.locator(".profile-photo").boundingBox();
+    expect(bounds!.x).toBeGreaterThanOrEqual(0);
+    expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
+  }
+  await page.locator("#terapias").scrollIntoViewIfNeeded();
+  await expect(page.locator("#terapias .therapy-photo")).toHaveCount(2);
+  await expect.poll(() => page.locator("#terapias .therapy-photo").evaluateAll(images => images.every(image => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
 });
