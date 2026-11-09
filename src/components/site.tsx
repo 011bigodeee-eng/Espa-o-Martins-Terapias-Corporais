@@ -427,7 +427,7 @@ export default function Site() {
                   ),
                 )}
               </div>
-              <span className="art-note">Fotos do espaço · imagens em atualização</span>
+              <span className="art-note">Fotos reais de atendimentos e do ambiente</span>
             </div>
             <div className="therapy-grid" aria-live="polite">
               {filtered.map((therapy) => (
@@ -978,7 +978,7 @@ export default function Site() {
             </p>
             <Booking therapy={selected.message}>Agendar pelo WhatsApp</Booking>
             <span className="art-note">
-              {therapyPhotos[selected.theme] ? "Fotografia de atendimento no Espaço Martins." : "Fotografia oficial desta técnica em breve."}
+              {therapyPhotos[selected.theme] ? "Fotografia de atendimento no Espaço Martins." : "Foto do ambiente. Fotografia de atendimento desta técnica ainda não fornecida."}
             </span>
           </div>
         </Modal>

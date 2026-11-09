@@ -34,3 +34,12 @@ export const therapyPhotos: Record<string, { src: string; alt: string }> = {
   relax: { src: "/images/atendimento-massagem.jpg", alt: "Martins realizando massagem nas costas; paciente com touca e corpo coberto por toalha" },
   cups: { src: "/images/atendimento-ventosas.jpg", alt: "Atendimento de ventosaterapia no Espaço Martins, com paciente usando touca e cobertura" },
 };
+
+// Fotos do ambiente não representam a execução das técnicas pendentes.
+export const therapyVenuePhotos: Record<string, { src: string; alt: string }> = {
+  sport: { src: "/images/sala.png", alt: "Sala de atendimento do Espaço Martins com maca preparada; fotografia do ambiente, sem demonstração de massagem desportiva" },
+  shiatsu: { src: "/images/recepcao.png", alt: "Recepção do Espaço Martins; fotografia do ambiente, sem demonstração de Shiatsu" },
+  stones: { src: "/images/consulta.png", alt: "Ambiente de acolhimento do Espaço Martins; fotografia do espaço, sem demonstração de pedras quentes" },
+  fascia: { src: "/images/sala.png", alt: "Sala do Espaço Martins; fotografia do ambiente, sem demonstração de liberação miofascial" },
+  mobility: { src: "/images/consulta.png", alt: "Ambiente do Espaço Martins; fotografia do espaço, sem demonstração de avaliação do movimento" },
+};

@@ -356,6 +356,27 @@ test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page 
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
   }
   await page.locator("#terapias").scrollIntoViewIfNeeded();
-  await expect(page.locator("#terapias .therapy-photo")).toHaveCount(3);
+  await expect(page.locator("#terapias .therapy-photo")).toHaveCount(6);
   await expect.poll(() => page.locator("#terapias .therapy-photo").evaluateAll(images => images.every(image => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
+});
+
+
+test("seis cards com fotos reais, legendas honestas e grade responsiva", async ({ page }) => {
+  await page.goto("/");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const cards = page.locator("#terapias .therapy-card");
+  await expect(cards).toHaveCount(6);
+  await expect(page.getByText("O cuidado em foco.", { exact: true })).toHaveCount(0);
+  await expect(page.locator("#terapias .therapy-art--venue")).toHaveCount(3);
+  for (const [width, columns] of [[390, 1], [820, 2], [1440, 3]]) {
+    await page.setViewportSize({ width, height: 1000 });
+    for (const card of await cards.all()) {
+      await card.scrollIntoViewIfNeeded();
+      await expect.poll(() => card.locator("img").evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+      await expect(card.locator(".therapy-actions a")).toHaveAttribute("href", /^https:\/\/wa.me\//);
+    }
+    expect(await page.locator(".therapy-grid").evaluate(el => getComputedStyle(el).gridTemplateColumns.split(" ").length)).toBe(columns);
+    const sizes = await cards.locator(".therapy-art").evaluateAll(items => items.map(el => ({ w: el.getBoundingClientRect().width, h: el.getBoundingClientRect().height })));
+    expect(Math.max(...sizes.map(s => s.h)) - Math.min(...sizes.map(s => s.h))).toBeLessThan(2);
+  }
 });
