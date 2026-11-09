@@ -8,7 +8,7 @@ Edite `src/lib/verified-content.ts`:
 
 - `verifiedProfile.professionalName`, `biography` e `institutionalText`: nome e textos autorizados. Enquanto os textos estão vazios, a apresentação se identifica como provisória.
 - `qualifications` e `registration`: publicar apenas depois de confirmação. Não foram preenchidos títulos, formação ou registro.
-- `portrait`: retrato principal. A segunda foto fornecida está disponível na apresentação expansível.
+- `portrait`: retrato principal. A foto com o modelo anatômico da coluna fica visível na apresentação, sem necessidade de expandir. O arquivo original foi preservado.
 - `officialBrand.light` e `officialBrand.dark`: caminhos das versões oficiais para fundos claros e escuros. Preserve o arquivo completo, sua proporção e a área de proteção. A referência comparativa recebida no segundo ZIP identifica como correta a marca oval no quadro à direita, com símbolo botânico e o texto “Terapias Manuais”. O arquivo original da marca ainda não foi fornecido; a identificação tipográfica atual é provisória, sem símbolo recriado. O componente Brand centraliza todas as aplicações.
 - `therapyPhotos`: imagem e texto alternativo por técnica (`relax`, `sport`, `shiatsu`, `feet`, `cups`, `stones`, `fascia`, `mobility`). Não reutilize uma foto de outra modalidade para sugerir uma técnica diferente.
 

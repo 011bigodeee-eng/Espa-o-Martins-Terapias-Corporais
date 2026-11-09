@@ -317,9 +317,10 @@ export default function Site() {
             {verifiedProfile.registration && <p>{verifiedProfile.registration}</p>}
             {[...verifiedProfile.events, ...verifiedProfile.educationalResources].map(item => <a className="text-link" key={item.url} href={item.url} target="_blank" rel="noopener noreferrer">{item.title}<ArrowUpRight size={16} /></a>)}
             <a className="text-link" href={whatsapp()} target="_blank" rel="noopener noreferrer">Converse com Martins <ArrowUpRight size={17} /></a>
-            <details className="profile-more"><summary>Mais um olhar sobre o Martins</summary>
-              <Image src="/images/martins-coluna.jpg" alt="Martins segurando um modelo anatômico da coluna vertebral" width={1254} height={1254} sizes="(max-width: 760px) 85vw, 35vw" />
-            </details>
+            <figure className="profile-more">
+              <Image src="/images/martins-coluna.jpg" alt="Martins segurando um modelo anatômico da coluna vertebral" width={1254} height={1254} sizes="(max-width: 760px) 85vw, 320px" />
+              <figcaption>Martins com um modelo anatômico da coluna vertebral.</figcaption>
+            </figure>
           </div>
         </section>
 

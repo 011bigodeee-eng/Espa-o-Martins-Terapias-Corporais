@@ -344,7 +344,7 @@ test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page 
   expect(await page.locator("main > section").evaluateAll(sections => sections.slice(0, 3).map(section => section.id))).toEqual(["inicio", "martins", "espaco"]);
   await expect(page.locator(".header .brand-link")).toHaveAttribute("href", /^https:\/\/wa.me\/5511959389897/);
   await expect(page.locator('image[href*="terapias-ilustrativas"]')).toHaveCount(0);
-  await profile.locator("summary").click();
+  await profile.locator(".profile-more").scrollIntoViewIfNeeded();
   await expect(profile.getByAltText("Martins segurando um modelo anatômico da coluna vertebral")).toBeVisible();
   for (const width of [360, 390, 768, 820, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
