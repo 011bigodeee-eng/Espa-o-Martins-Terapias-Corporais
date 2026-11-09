@@ -2948,7 +2948,7 @@ summary:focus-visible {
 
 /* A imagem de atendimento permanece inteira; fotos do ambiente são identificadas. */
 .therapy-art { background: var(--paper); }
-.therapy-grid .therapy-art { aspect-ratio: 3 / 4; }
+.therapy-grid .therapy-art { aspect-ratio: 9 / 16; }
 .therapy-photo--treatment { object-fit: contain; }
 .therapy-photo--venue { object-fit: cover; }
 .therapy-grid .therapy-art__caption { left: 0; bottom: 0; width: 100%; padding: 9px 12px; font-size: 10px; }
@@ -2964,4 +2964,58 @@ summary:focus-visible {
   .therapy-toolbar { flex-wrap: wrap; gap: 16px; }
   .therapy-grid .therapy-actions { flex-direction: row; align-items: center; justify-content: space-between; min-height: 60px; }
   .therapy-grid .therapy-art__caption { font-size: 9px; }
+}
+
+/* Catálogo: todas as fotografias preenchem o mesmo quadro, sem faixas laterais. */
+.therapy-grid .therapy-photo {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Composição centralizada em todas as seções do celular. */
+@media (max-width: 760px) {
+  html { scrollbar-gutter: auto; }
+  main, .footer, .mobile-menu { text-align: center; }
+  .container { margin-inline: auto; }
+  main .eyebrow, .footer .eyebrow { justify-content: center; }
+  .hero h1, .hero p, .section-heading > p, .experience-top > p,
+  .faq-intro > p { margin-inline: auto; }
+  .hero-actions, .experience-cta { align-items: center; }
+  .hero-bottom { justify-content: center; gap: 32px; }
+  .profile-more { margin-inline: auto; }
+  .profile-pending { border-left: 0; border-top: 1px solid var(--gold); padding: 16px 0 0; }
+  .image-index { flex-direction: column; align-items: center; gap: 6px; }
+  .professional { justify-content: center; }
+  .professional > svg { margin-left: 0; }
+  .filters { justify-content: center; flex-wrap: wrap; gap: 0 18px; }
+  .therapy-toolbar { text-align: center; }
+  .therapy-grid .therapy-actions { justify-content: center; column-gap: 22px; }
+  .fascia-actions { align-items: center; justify-content: center; }
+  .fascia-actions .button, .biomechanics > .button,
+  .experience-cta > .button, .final-cta > .button { justify-content: center; }
+  .care-note { text-align: center; }
+  .timeline li { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .timeline p { margin-top: 0; }
+  .gallery-caption { text-align: center; }
+  .gallery-footnote { justify-content: center; }
+  .commitment ul { align-items: center; border-left: 0; }
+  .commitment li { justify-content: center; }
+  .faq-list summary > span { flex: 1; justify-content: center; }
+  .faq-list details > p { padding-inline: 12px; }
+  .location-info address { justify-content: center; }
+  .location-info > .text-link { margin-left: 0; }
+  .location-book { display: flex; justify-content: center; }
+  .footer-main { grid-template-columns: 1fr; justify-items: center; }
+  .footer-main > *, .footer-nav, .footer-social { grid-column: 1; grid-row: auto; }
+  .footer-contact, .footer-nav, .footer-social { align-items: center; }
+  .footer-social > a { justify-content: center; }
+  .footer-bottom { align-items: center; padding-inline: 0; }
+  .body-region { display: flex; flex-direction: column; text-align: center; }
+  .body-region .anatomy { margin-inline: auto; }
+  .modal { text-align: center; }
+  .therapy-modal .button, .mobile-menu > .button { justify-content: center; }
+  .mobile-menu > .brand { margin-inline: auto; }
+  .mobile-menu nav { text-align: center; }
+  .mobile-menu nav > a { justify-content: center; gap: 14px; }
+  .mobile-menu nav > a > svg { margin-left: 0; }
 }

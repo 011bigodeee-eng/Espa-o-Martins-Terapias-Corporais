@@ -384,3 +384,26 @@ test("seis cards com técnicas representadas, legendas honestas e grade responsi
     expect(Math.max(...sizes.map(s => s.h)) - Math.min(...sizes.map(s => s.h))).toBeLessThan(2);
   }
 });
+
+test("fotos uniformes e conteúdo centralizado no celular", async ({ page }) => {
+  await page.goto("/");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const width of [360, 390, 430]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const selector of [".hero-content", ".profile-copy", ".about-copy", ".therapy-copy", ".experience-top", ".faq-intro", ".location-info", ".footer"]) {
+      expect(await page.locator(selector).first().evaluate(el => getComputedStyle(el).textAlign)).toBe("center");
+    }
+    const photo = page.locator(".profile-more");
+    const box = await photo.boundingBox();
+    const clientWidth = await page.evaluate(() => document.documentElement.clientWidth);
+    expect(Math.abs(box!.x + box!.width / 2 - clientWidth / 2)).toBeLessThan(2);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  }
+  for (const width of [390, 820, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    const photos = await page.locator(".therapy-grid img").evaluateAll(images => images.map(img => ({fit: getComputedStyle(img).objectFit, width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height})));
+    expect(photos).toHaveLength(6);
+    expect(photos.every(photo => photo.fit === "cover")).toBe(true);
+    expect(Math.max(...photos.map(photo => photo.height)) - Math.min(...photos.map(photo => photo.height))).toBeLessThan(2);
+  }
+});

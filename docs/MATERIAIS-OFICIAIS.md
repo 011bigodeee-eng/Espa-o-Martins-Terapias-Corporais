@@ -14,7 +14,7 @@ Edite `src/lib/verified-content.ts`:
 
 ## Catálogo atual: somente fotografias reais de Martins
 
-A cliente solicitou expressamente a aplicação das seis fotos do ZIP e nomes compatíveis com os atendimentos visíveis. Não há ilustrações de IA ou fotos de ambientes nos seis cards. Os originais foram copiados sem alterações sintéticas, recortes ou adição de toucas e toalhas.
+A cliente solicitou expressamente a aplicação das seis fotos do ZIP e nomes compatíveis com os atendimentos visíveis. Não há ilustrações de IA ou fotos de ambientes nos seis cards. Os originais foram copiados sem alterações sintéticas ou adição de toucas e toalhas. Os cards usam quadros uniformes 9:16 com preenchimento proporcional via CSS; os arquivos originais são preservados.
 
 | Arquivo recebido | Card | Arquivo aplicado |
 | --- | --- | --- |
