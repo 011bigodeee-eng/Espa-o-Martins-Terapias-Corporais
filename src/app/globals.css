@@ -275,7 +275,7 @@ summary:focus-visible {
   gap: 26px;
   background: var(--olive);
   pointer-events: none;
-  animation: intro-out 0.4s ease 4.6s forwards;
+  animation: intro-out 0.4s ease 2.6s forwards;
 }
 .intro > .brand {
   animation: enter 0.7s ease both;

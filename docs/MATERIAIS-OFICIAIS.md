@@ -38,4 +38,4 @@ As seções fora do catálogo foram preservadas. Os arquivos de ilustrações an
 - Texto institucional, apresentação profissional, qualificações e registro confirmados.
 - Nome específico da técnica com instrumento, caso desejado no lugar da descrição atual.
 
-A introdução dura 5 segundos (4,6 segundos de exibição e 0,4 segundo de saída), sem botão de pular. A preferência por movimento reduzido continua respeitada. A hero usa qualidade 90 e `sizes="100vw"`, sem modificar o original de 1536 × 1024 pixels; não há promessa de detalhes além da resolução fornecida.
+A introdução dura 3 segundos (2,6 segundos de exibição e 0,4 segundo de saída), sem botão de pular. A preferência por movimento reduzido continua respeitada. A hero usa qualidade 90 e `sizes="100vw"`, sem modificar o original de 1536 × 1024 pixels; não há promessa de detalhes além da resolução fornecida.
