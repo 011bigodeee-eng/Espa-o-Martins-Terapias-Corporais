@@ -19,13 +19,13 @@ Os arquivos recebidos foram preservados sem alteração visual. Os seis cards de
 | Massagem relaxante | Fotografia real fornecida, com touca e cobertura visíveis |
 | Massagem desportiva | Ilustração por IA de pressão manual na panturrilha |
 | Shiatsu | Ilustração por IA de pressão com as palmas através do lençol |
-| Reflexologia podal | Ilustração por IA de pressão na planta do pé |
-| Ventosaterapia | Fotografia real fornecida, com touca e cobertura visíveis |
+| Reflexologia podal | Foto 6 real, com enquadramento sem cabeça expressamente aprovado pela cliente |
+| Ventosaterapia | Ilustração por IA com ventosas transparentes e bomba manual em uso |
 | Pedras quentes | Ilustração por IA com pedras escuras e aplicação manual |
 
-As quatro ilustrações apresentam touca visível e corpo coberto, com exposição apenas da região tratada. Não retratam Martins e não são registros da clínica; recebem a legenda “Imagem ilustrativa · IA” nos cards e esclarecimento no modal. Os arquivos WebP separados têm 543 × 724 pixels (3:4). A fonte gerada permanece em `/workspace/generated_images/exec-01431696-162f-42d0-ba85-c052d711911d.png` na instância atual.
+As quatro ilustrações aplicadas apresentam touca visível e corpo coberto, com exposição apenas da região tratada. Não retratam Martins e não são registros da clínica; recebem a legenda “Imagem ilustrativa · IA” nos cards e esclarecimento no modal. As ilustrações de desportiva, Shiatsu e pedras quentes têm 543 × 724 pixels (3:4); ventosaterapia usa arquivo otimizado de 900 pixels de largura. A fonte gerada permanece em `/workspace/generated_images/exec-01431696-162f-42d0-ba85-c052d711911d.png` na instância atual.
 
-A fotografia real de reflexologia continua preservada em `public/images/atendimento-reflexologia.jpg`, mas não está aplicada: o enquadramento não mostra a cabeça, impedindo conferir a exigência de touca. Uma nova fotografia real com a touca visível poderá substituí-la.
+A fotografia real de reflexologia está aplicada em `public/images/atendimento-reflexologia.jpg`: a cliente aprovou expressamente o enquadramento sem a cabeça visível. Não se afirma uso de touca nessa imagem e não houve alteração sintética.
 
 `therapyPhotos` recebe registros oficiais; `therapyIllustrations` mantém as imagens identificadas como IA. Ao receber um registro real, acrescente-o a `therapyPhotos`: ele tem prioridade sobre a ilustração. `therapyVenuePhotos` permanece apenas nas seções fora dos seis cards, sem alteração nesta revisão.
 
@@ -34,6 +34,17 @@ A fotografia real de reflexologia continua preservada em `public/images/atendime
 - Arquivo original do logotipo oval da referência (quadro à direita), com versões adequadas para fundos claros e escuros. As capturas recebidas foram usadas somente como referência, sem recorte ou redesenho para uso final.
 - Texto institucional e apresentação profissional oficiais.
 - Formação, qualificações e registro confirmados, caso devam ser publicados.
-- Fotografias oficiais de desportiva, Shiatsu e pedras quentes, além de um novo enquadramento de reflexologia, com cobertura, touca visível e autorização de uso.
+- Fotografias oficiais de desportiva, Shiatsu, pedras quentes e ventosaterapia, com cobertura, touca visível e autorização de uso. O enquadramento atual de reflexologia já foi aprovado.
 
 A publicação em produção não faz parte desta alteração local.
+
+## Revisão do ZIP de 11.50.55–11.50.56
+
+- Foto 1 (`11.50.55 (1)`): atendimento manual na perna, cabeça fora do enquadramento. Técnica específica e uso de touca não confirmados; não aplicada automaticamente à desportiva.
+- Foto 2 (`11.50.55 (2)`): mãos e pé visíveis; cabeça fora do quadro. Aguardar confirmação do tratamento e aprovação do enquadramento antes de uso secundário.
+- Foto 3 (`11.50.55`): mobilização de braço com bastão, não é registro verificável de uma das seis técnicas. Não aplicada no catálogo.
+- Foto 4 (`11.50.56 (1)`): atendimento manual nas costas com touca e cobertura. Cliente confirmou o serviço. Aplicada em Massagem relaxante, sem alteração visual, em `atendimento-relaxante-oficial.jpg`.
+- Foto 5 (`11.50.56 (2)`): instrumento junto ao pescoço e ombro. Sem ventosas claramente visíveis; não classificada como ventosaterapia. O antigo arquivo `atendimento-ventosas.jpg` também foi retirado do card por não mostrar ventosas de forma inequívoca.
+- Foto 6 (`11.50.56`): mesma foto de reflexologia recebida anteriormente. Cabeça fora do quadro; cliente aprovou explicitamente esse enquadramento. Foto real aplicada no card e no modal, sem adicionar touca artificialmente.
+
+Não foram adicionadas toucas, toalhas ou alterações sintéticas às fotografias reais.

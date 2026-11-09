@@ -28,10 +28,10 @@ export const officialBrand: { light: string | null; dark: string | null } = {
   dark: null,
 };
 
-// Registros reais aprovados com cobertura e touca visíveis. O original de reflexologia é preservado em public/images.
+// Registros reais aprovados pela cliente. Reflexologia: enquadramento sem cabeça expressamente aprovado.
 export const therapyPhotos: Record<string, { src: string; alt: string }> = {
-  relax: { src: "/images/atendimento-massagem.jpg", alt: "Martins realizando massagem nas costas; paciente com touca e corpo coberto por toalha" },
-  cups: { src: "/images/atendimento-ventosas.jpg", alt: "Atendimento de ventosaterapia no Espaço Martins, com paciente usando touca e cobertura" },
+  feet: { src: "/images/atendimento-reflexologia.jpg", alt: "Martins realizando reflexologia podal, com foco nas mãos e no pé, e o corpo do paciente coberto por lençol" },
+  relax: { src: "/images/atendimento-relaxante-oficial.jpg", alt: "Martins realizando massagem manual nas costas de paciente com touca e parte inferior coberta por toalha" },
 };
 
 // Fotos do ambiente não representam a execução das técnicas pendentes.
@@ -42,8 +42,8 @@ export const therapyVenuePhotos: Record<string, { src: string; alt: string }> = 
 
 // Ilustrações geradas por IA: não retratam Martins nem registros reais do espaço.
 export const therapyIllustrations: Record<string, { src: string; alt: string }> = {
+  cups: { src: "/images/ilustracao-ventosaterapia.webp", alt: "Ilustração por IA de ventosaterapia: aplicação de ventosas transparentes nas costas, paciente com touca e parte inferior coberta por toalha branca" },
   sport: { src: "/images/ilustracao-desportiva.webp", alt: "Ilustração por IA de massagem desportiva: mãos pressionam a panturrilha, com paciente de touca e corpo coberto por toalha branca" },
   shiatsu: { src: "/images/ilustracao-shiatsu.webp", alt: "Ilustração por IA de Shiatsu: pressão com as palmas sobre as costas cobertas por lençol, com paciente de touca" },
-  feet: { src: "/images/ilustracao-reflexologia.webp", alt: "Ilustração por IA de reflexologia podal: pressão com o polegar na planta do pé, paciente de touca e corpo coberto por lençol branco" },
   stones: { src: "/images/ilustracao-pedras-quentes.webp", alt: "Ilustração por IA de massagem com pedras quentes: terapeuta desliza pedra escura nas costas, com paciente de touca e parte inferior coberta" },
 };
