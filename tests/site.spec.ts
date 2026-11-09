@@ -79,10 +79,8 @@ test("filtros, detalhes, FAQ, privacidade e mapa sob demanda", async ({
 }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Movimento", exact: true }).click();
-  await expect(page.locator(".therapy-card")).toHaveCount(1);
-  await expect(page.locator(".therapy-card h3")).toHaveText(
-    "Massagem desportiva",
-  );
+  await expect(page.locator(".therapy-card")).toHaveCount(2);
+  await expect(page.locator(".therapy-card h3")).toHaveText(["Massagem nas pernas", "Mobilização dos braços"]);
   await page.getByRole("button", { name: "Relaxamento", exact: true }).click();
   await expect(page.locator(".therapy-card")).toHaveCount(3);
   await page.getByRole("button", { name: "Todas", exact: true }).click();
@@ -303,7 +301,7 @@ test("acessibilidade WCAG automatizada: desktop, detalhes e mobile", async ({
     .analyze();
   expect(desktop.violations).toEqual([]);
   await page
-    .getByRole("button", { name: "Saiba mais sobre Shiatsu", exact: true })
+    .getByRole("button", { name: "Saiba mais sobre Mobilização dos braços", exact: true })
     .click();
   const modal = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -366,10 +364,14 @@ test("seis cards com técnicas representadas, legendas honestas e grade responsi
   await page.emulateMedia({ reducedMotion: "reduce" });
   const cards = page.locator("#terapias .therapy-card");
   await expect(cards).toHaveCount(6);
+  await expect(cards.locator("h3")).toHaveText(["Massagem relaxante", "Massagem nas pernas", "Mobilização dos braços", "Reflexologia podal", "Cuidado instrumental", "Massagem nos pés"]);
+  const sources = await cards.locator("img").evaluateAll(images => images.map(img => img.getAttribute("src")));
+  expect(new Set(sources).size).toBe(6);
+  expect(sources.every(src => src?.includes("martins-"))).toBe(true);
   await expect(page.getByText("O cuidado em foco.", { exact: true })).toHaveCount(0);
   await expect(page.locator("#terapias .therapy-art--venue")).toHaveCount(0);
-  await expect(page.locator("#terapias .therapy-art--illustration")).toHaveCount(4);
-  await expect(page.locator("#terapias .therapy-art--treatment")).toHaveCount(2);
+  await expect(page.locator("#terapias .therapy-art--illustration")).toHaveCount(0);
+  await expect(page.locator("#terapias .therapy-art--treatment")).toHaveCount(6);
   for (const [width, columns] of [[390, 1], [820, 2], [1440, 3]]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const card of await cards.all()) {

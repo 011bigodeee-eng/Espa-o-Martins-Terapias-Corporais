@@ -182,10 +182,10 @@ export default function Site() {
       !["miofascial", "biomecanica"].includes(t.id) &&
       (filter === "Todas" ||
         (filter === "Relaxamento"
-          ? ["relaxante", "reflexologia", "pedras"].includes(t.id)
+          ? ["relaxante", "reflexologia", "pes"].includes(t.id)
           : filter === "Movimento"
-            ? t.id === "desportiva"
-            : ["shiatsu", "ventosas"].includes(t.id))),
+            ? ["pernas", "mobilizacao"].includes(t.id)
+            : ["instrumental"].includes(t.id))),
   );
 
   return (
@@ -428,7 +428,7 @@ export default function Site() {
                   ),
                 )}
               </div>
-              <span className="art-note">Atendimentos reais e imagens ilustrativas · IA</span>
+              <span className="art-note">Fotografias reais de atendimentos com Martins</span>
             </div>
             <div className="therapy-grid" aria-live="polite">
               {filtered.map((therapy) => (

@@ -28,10 +28,15 @@ export const officialBrand: { light: string | null; dark: string | null } = {
   dark: null,
 };
 
-// Registros reais aprovados pela cliente. Reflexologia: enquadramento sem cabeça expressamente aprovado.
+// Seis registros reais selecionados pela cliente para o catálogo, sem alterações sintéticas.
+// Alguns enquadramentos não mostram a cabeça; não se afirma touca visível nesses casos.
 export const therapyPhotos: Record<string, { src: string; alt: string }> = {
-  feet: { src: "/images/atendimento-reflexologia.jpg", alt: "Martins realizando reflexologia podal, com foco nas mãos e no pé, e o corpo do paciente coberto por lençol" },
-  relax: { src: "/images/atendimento-relaxante-oficial.jpg", alt: "Martins realizando massagem manual nas costas de paciente com touca e parte inferior coberta por toalha" },
+  relax: { src: "/images/martins-relaxante-costas.jpg", alt: "Martins realizando massagem nas costas de paciente com touca e parte inferior coberta por toalha" },
+  legs: { src: "/images/martins-massagem-pernas.jpg", alt: "Martins realizando atendimento manual na perna, com o restante do corpo coberto por lençol branco" },
+  arms: { src: "/images/martins-mobilizacao-bracos.jpg", alt: "Martins acompanhando a mobilização dos braços de uma paciente com auxílio de bastão" },
+  feet: { src: "/images/martins-reflexologia-podal.jpg", alt: "Martins realizando reflexologia podal, com foco nas mãos e no pé e corpo coberto por lençol" },
+  instrument: { src: "/images/martins-tecnica-instrumental.jpg", alt: "Martins utilizando um instrumento junto ao pescoço e ombro de paciente com touca" },
+  footmassage: { src: "/images/martins-massagem-pes.jpg", alt: "Martins realizando atendimento manual no pé de paciente sobre maca com lençol branco" },
 };
 
 // Fotos do ambiente não representam a execução das técnicas pendentes.
