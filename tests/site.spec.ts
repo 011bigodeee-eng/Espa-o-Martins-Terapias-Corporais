@@ -320,11 +320,14 @@ test("acessibilidade WCAG automatizada: desktop, detalhes e mobile", async ({
   expect(mobile.violations).toEqual([]);
 });
 
-test("abertura encerra em 1,5s e respeita movimento reduzido", async ({
+test("abertura dura cinco segundos, sem botão de pular, e respeita movimento reduzido", async ({
   page,
 }) => {
   await page.goto("/");
-  await expect(page.locator(".intro")).toBeHidden({ timeout: 3000 });
+  await expect(page.locator(".intro")).toBeVisible();
+  expect(await page.locator(".intro").evaluate(el => { const style = getComputedStyle(el); return parseFloat(style.animationDelay) + parseFloat(style.animationDuration); })).toBe(5);
+  await expect(page.getByRole("button", { name: /pular introdução/i })).toHaveCount(0);
+  await expect(page.locator(".intro")).toBeHidden({ timeout: 6500 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.reload();
   await expect(page.locator(".intro")).toBeHidden();

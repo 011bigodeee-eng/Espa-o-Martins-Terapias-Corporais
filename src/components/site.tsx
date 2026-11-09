@@ -243,9 +243,9 @@ export default function Site() {
               src="/images/sala.png"
               alt="Sala de atendimento do Espaço Martins, com maca e iluminação aconchegante"
               fill
-              priority
-              sizes="(max-width: 760px) 100vw, 75vw"
-              quality={75}
+              preload
+              sizes="100vw"
+              quality={90}
             />
           </div>
           <div className="hero-shade" />

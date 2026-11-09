@@ -9,7 +9,7 @@ Edite `src/lib/verified-content.ts`:
 - `verifiedProfile.professionalName`, `biography` e `institutionalText`: nome e textos autorizados. Enquanto os textos estão vazios, a apresentação se identifica como provisória.
 - `qualifications` e `registration`: publicar apenas depois de confirmação. Não foram preenchidos títulos, formação ou registro.
 - `portrait`: retrato principal. A foto com o modelo anatômico da coluna fica visível na apresentação, sem necessidade de expandir. O arquivo original foi preservado.
-- `officialBrand.light` e `officialBrand.dark`: caminhos das versões oficiais para fundos claros e escuros. Preserve o arquivo completo, sua proporção e a área de proteção. A referência comparativa recebida no segundo ZIP identifica como correta a marca oval no quadro à direita, com símbolo botânico e o texto “Terapias Manuais”. O arquivo original da marca ainda não foi fornecido; a identificação tipográfica atual é provisória, sem símbolo recriado. O componente Brand centraliza todas as aplicações.
+- Marca atual: `public/images/logo-martins-oficial.jpg`, recebida no ZIP de 12.10.13. O componente `Brand` exibe o arquivo ao lado do nome; `.brand-emblem` enquadra o círculo original sem margem branca, preservando o arquivo. O antigo objeto `officialBrand` não controla essa aplicação.
 - `therapyPhotos`: imagem e texto alternativo por técnica (`relax`, `sport`, `shiatsu`, `feet`, `cups`, `stones`, `fascia`, `mobility`). Não reutilize uma foto de outra modalidade para sugerir uma técnica diferente.
 
 ## Catálogo atual: somente fotografias reais de Martins
@@ -35,6 +35,7 @@ As seções fora do catálogo foram preservadas. Os arquivos de ilustrações an
 
 ## Materiais pendentes fora desta revisão
 
-- Arquivo original do logotipo oval da referência.
 - Texto institucional, apresentação profissional, qualificações e registro confirmados.
 - Nome específico da técnica com instrumento, caso desejado no lugar da descrição atual.
+
+A introdução dura 5 segundos (4,6 segundos de exibição e 0,4 segundo de saída), sem botão de pular. A preferência por movimento reduzido continua respeitada. A hero usa qualidade 90 e `sizes="100vw"`, sem modificar o original de 1536 × 1024 pixels; não há promessa de detalhes além da resolução fornecida.

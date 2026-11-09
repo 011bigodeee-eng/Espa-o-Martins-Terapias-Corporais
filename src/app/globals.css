@@ -275,7 +275,7 @@ summary:focus-visible {
   gap: 26px;
   background: var(--olive);
   pointer-events: none;
-  animation: intro-out 0.4s ease 1.1s forwards;
+  animation: intro-out 0.4s ease 4.6s forwards;
 }
 .intro > .brand {
   animation: enter 0.7s ease both;
@@ -3018,4 +3018,34 @@ summary:focus-visible {
   .mobile-menu nav { text-align: center; }
   .mobile-menu nav > a { justify-content: center; gap: 14px; }
   .mobile-menu nav > a > svg { margin-left: 0; }
+}
+
+/* Marca fornecida: enquadramento circular elimina a margem branca do arquivo. */
+.brand-emblem {
+  display: block;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #000;
+}
+.brand-emblem img {
+  position: absolute;
+  width: 140.04%;
+  max-width: none;
+  height: auto;
+  left: -19.04%;
+  top: -8.315%;
+}
+.brand-large .brand-emblem { width: 86px; height: 86px; }
+.intro > .brand { flex-direction: column; gap: 20px; }
+@media (max-width: 1150px) {
+  .header .brand-emblem { width: 50px; height: 50px; }
+}
+@media (max-width: 760px) {
+  .brand-emblem { width: 52px; height: 52px; }
+  .header .brand { gap: 9px; }
+  .intro > .brand { flex-direction: column; }
 }
