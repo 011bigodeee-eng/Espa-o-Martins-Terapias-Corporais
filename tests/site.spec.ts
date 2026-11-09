@@ -356,6 +356,6 @@ test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page 
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
   }
   await page.locator("#terapias").scrollIntoViewIfNeeded();
-  await expect(page.locator("#terapias .therapy-photo")).toHaveCount(2);
+  await expect(page.locator("#terapias .therapy-photo")).toHaveCount(3);
   await expect.poll(() => page.locator("#terapias .therapy-photo").evaluateAll(images => images.every(image => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
 });

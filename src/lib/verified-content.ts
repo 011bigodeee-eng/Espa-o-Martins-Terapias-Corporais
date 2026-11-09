@@ -28,8 +28,9 @@ export const officialBrand: { light: string | null; dark: string | null } = {
   dark: null,
 };
 
-// Acrescente imagens por técnica somente após conferir cobertura, touca e autorização.
+// Imagens oficiais por técnica. A foto de reflexologia foi expressamente selecionada pela cliente.
 export const therapyPhotos: Record<string, { src: string; alt: string }> = {
+  feet: { src: "/images/atendimento-reflexologia.jpg", alt: "Martins realizando reflexologia podal, com as mãos sobre o pé do paciente e o corpo coberto por lençol" },
   relax: { src: "/images/atendimento-massagem.jpg", alt: "Martins realizando massagem nas costas; paciente com touca e corpo coberto por toalha" },
   cups: { src: "/images/atendimento-ventosas.jpg", alt: "Atendimento de ventosaterapia no Espaço Martins, com paciente usando touca e cobertura" },
 };
