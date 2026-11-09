@@ -194,7 +194,7 @@ export default function Site() {
         Ir para o conteúdo
       </a>
       <div className="intro" aria-hidden="true">
-        <Brand compact dark />
+        <Brand compact dark showEmblem={false} />
         <span>Cuidar de você é o que nos move!</span>
         <i />
       </div>
