@@ -295,7 +295,7 @@ export default function Site() {
           </span>
           <i />
           <span>
-            <Hand size={17} /> Terapias manuais
+            <Hand size={17} /> Terapias corporais
           </span>
           <i />
           <span>
