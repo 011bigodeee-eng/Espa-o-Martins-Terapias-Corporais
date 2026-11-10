@@ -3051,3 +3051,21 @@ summary:focus-visible {
   .header .brand { gap: 9px; }
   .intro > .brand { flex-direction: column; }
 }
+
+/* Fotografias reais: regiões de cuidado, sem fichas de anatomia. */
+.body-regions { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.body-regions .body-region { display: flex; flex-direction: column; padding: 0; gap: 0; overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: 3px; text-align: left; }
+.body-region-photo { position: relative; width: 100%; aspect-ratio: 9 / 16; overflow: hidden; background: var(--beige); }
+.body-region-photo img { object-fit: cover; object-position: center; transition: transform 400ms ease; }
+.body-regions .body-region h3 { margin: 0; padding: 24px; font-size: clamp(22px, 2vw, 28px); align-self: auto; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .body-region:hover .body-region-photo img { transform: scale(1.015); }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .body-regions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+}
+@media (max-width: 760px) {
+  .body-regions { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .body-regions .body-region { text-align: center; }
+  .body-regions .body-region h3 { padding: 20px; }
+}

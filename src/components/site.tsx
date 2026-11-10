@@ -528,13 +528,17 @@ export default function Site() {
             </p>
           </div>
           <div className="body-regions">
-            {["Coluna vertebral", "Ombro", "Joelho"].map((part, index) => (
-              <div className="body-region reveal" key={part}>
-                <span className="region-number">0{index + 1}</span>
-                <Anatomy part={index} />
-                <h3>{part}</h3>
-                <span>Atenção ao seu movimento</span>
-              </div>
+            {[
+              { title: "Costas", photo: therapyPhotos.relax },
+              { title: "Ombros", photo: { src: "/images/atendimento-massagem.jpg", alt: "Martins realizando terapia manual nos ombros, com cliente de touca e parte inferior do corpo coberta por toalha limpa" } },
+              { title: "Pernas e joelhos", photo: therapyPhotos.legs },
+            ].map(({ title, photo }) => (
+              <article className="body-region reveal" key={title}>
+                <div className="body-region-photo">
+                  <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 760px) 90vw, (max-width: 1100px) 45vw, 30vw" quality={90} />
+                </div>
+                <h3>{title}</h3>
+              </article>
             ))}
           </div>
           <div className="biomechanics">
@@ -1009,94 +1013,6 @@ export default function Site() {
         </Modal>
       )}
     </>
-  );
-}
-
-function Anatomy({ part }: { part: number }) {
-  return (
-    <svg
-      className="anatomy"
-      viewBox="0 0 280 250"
-      role="img"
-      aria-label={`Esquema ilustrativo ${["da coluna vertebral", "do ombro", "do joelho"][part]}`}
-    >
-      <circle
-        cx="140"
-        cy="124"
-        r="92"
-        fill="none"
-        stroke="#d6cebd"
-        strokeDasharray="2 7"
-      />
-      <circle cx="140" cy="124" r="68" fill="none" stroke="#e2dacb" />
-      <g
-        fill="#e6dfd0"
-        stroke="#8b947b"
-        strokeWidth="1.3"
-        strokeLinejoin="round"
-      >
-        {part === 0 ? (
-          <>
-            <path
-              d="M130 20q-13 41 3 84t-8 91m25-175q-13 41 3 84t-8 91"
-              fill="none"
-              stroke="#a5ad96"
-            />
-            {Array.from({ length: 19 }, (_, i) => {
-              const x = 140 + Math.sin(i / 4) * 9;
-              return (
-                <g
-                  key={i}
-                  transform={`translate(${x} ${27 + i * 8.4}) rotate(${Math.cos(i / 4) * 8})`}
-                >
-                  <path d="M-11-3q11-5 22 0v6q-11 5-22 0Z" />
-                  <path d="m-11 0-8 2m30-2 8 2" />
-                </g>
-              );
-            })}
-            <path d="m118 189 22 34 21-34q-22 8-43 0Z" />
-          </>
-        ) : part === 1 ? (
-          <>
-            <path d="M62 67q48-14 91 11l30 10-12 11-36-5-39-7-34-6Z" />
-            <path d="M118 94 159 111l-38 55-34-8 2-50Z" />
-            <path d="m163 102 10-9q21 2 22 22l-7 33 15 59-18 6-23-65-10-23q-8-13 11-23Z" />
-            <path d="M165 103q19-9 23 12t-25 13" fill="#b7c0a3" />
-            <path
-              d="M156 93q-12 14-9 36"
-              fill="none"
-              stroke="#c5a56a"
-              strokeWidth="3"
-            />
-          </>
-        ) : (
-          <>
-            <path d="m116 24 27 1 1 71 18 18q9 24-5 33-11 6-20-5-9 11-20 5-14-9-5-33l11-18Z" />
-            <path d="M114 155q14-7 24 1 14-9 25-1l-18 27-2 51-23 1 3-55Z" />
-            <path d="m163 169 8 16 5 48-9 1-7-47-7-12" />
-            <path d="M142 120q18 0 15 14t-18 6q-12-8 3-20Z" fill="#b7c0a3" />
-            <path
-              d="M114 151q24-6 50 0"
-              fill="none"
-              stroke="#c5a56a"
-              strokeWidth="3"
-            />
-          </>
-        )}
-      </g>
-      <path d="M195 93h39m-39 0-11 15" stroke="#c5a56a" fill="none" />
-      <circle cx="234" cy="93" r="3" fill="#c5a56a" />
-      <text
-        x="140"
-        y="246"
-        textAnchor="middle"
-        fontSize="8"
-        letterSpacing="2"
-        fill="#7e816d"
-      >
-        REPRESENTAÇÃO ESQUEMÁTICA
-      </text>
-    </svg>
   );
 }
 
