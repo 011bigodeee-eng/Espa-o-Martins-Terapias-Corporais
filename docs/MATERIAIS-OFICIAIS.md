@@ -6,7 +6,7 @@ A abertura, a paleta, os textos das terapias e a ordem das seções existentes f
 
 Edite `src/lib/verified-content.ts`:
 
-- `verifiedProfile.professionalName`, `biography` e `institutionalText`: nome e textos autorizados. Enquanto os textos estão vazios, a apresentação informa que aguarda a biografia e as qualificações confirmadas.
+- `verifiedProfile.professionalName`, `biography` e `institutionalText`: nome e textos autorizados. A biografia atual contém os três parágrafos fornecidos pela cliente, com registro CRT e pós-graduação na área miofascial, sem número ou denominação adicional.
 - `qualifications` e `registration`: publicar apenas depois de confirmação. Não foram preenchidos títulos, formação ou registro.
 - `portrait`: retrato principal. A foto com o modelo anatômico foi retirada da apresentação e não foi reutilizada. Em seu lugar, `martins-sala-atendimento.jpg` contém a foto real da sala recebida no ZIP de 17.40.25, copiada sem alterações.
 - Marca atual: `public/images/logo-martins-oficial.jpg`, recebida no ZIP de 12.10.13. O componente `Brand` exibe o arquivo ao lado do nome; `.brand-emblem` enquadra o círculo original sem margem branca, preservando o arquivo. O antigo objeto `officialBrand` não controla essa aplicação.
@@ -35,7 +35,7 @@ As seções fora do catálogo foram preservadas. Os arquivos de ilustrações an
 
 ## Materiais pendentes fora desta revisão
 
-- Texto institucional, apresentação profissional, qualificações e registro confirmados.
+- Áudios originais para conferência documental da sigla exata do registro, número e denominação da pós-graduação; a apresentação utiliza o texto expressamente fornecido na solicitação atual.
 - Nome específico da técnica com instrumento, caso desejado no lugar da descrição atual.
 
 A introdução dura 3 segundos (2,6 segundos de exibição e 0,4 segundo de saída), sem botão de pular. A preferência por movimento reduzido continua respeitada. A hero usa qualidade 90 e `sizes="100vw"`, sem modificar o original de 1536 × 1024 pixels; não há promessa de detalhes além da resolução fornecida.
@@ -46,3 +46,7 @@ A introdução dura 3 segundos (2,6 segundos de exibição e 0,4 segundo de saí
 - `martins-sala-atendimento.jpg`: original `WhatsApp Image 2026-11-10 at 17.40.24.jpeg` (1200 × 1600). Os cinco outros anexos são fotografias da tela usadas apenas como referência.
 - `sala-sem-logotipo.png`: edição da imagem de abertura `sala.png` para retirar o logotipo do vidro da janela direita; original preservado. A versão editada é usada nas referências à mesma foto, sem sobreposição CSS ou recorte para esconder a marca.
 - Biografia completa não encontrada. O projeto menciona “CRT-BR 19.410” em comentário, explicitamente pendente de confirmação; não foi publicado. Formação, nome da pós-graduação miofascial e registro aguardam material oficial. Preencher `biography`, `institutionalText`, `qualifications` e `registration` em `verifiedProfile` quando recebido.
+
+### Apresentação profissional atualizada
+
+Os três parágrafos da nova solicitação foram aplicados integralmente, sem mensagem provisória nem linha amarela. A foto real da sala fica ao lado da biografia em telas amplas; em telas menores a composição se reorganiza preservando as fotografias inteiras. O texto declara CRT e pós-graduação na área miofascial conforme fornecido, sem publicar o número anteriormente mencionado em comentário. Os áudios originais não estão entre os materiais disponíveis nesta sessão; sua conferência documental permanece pendente.

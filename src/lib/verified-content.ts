@@ -13,7 +13,7 @@ export const verifiedProfile: {
 } = {
   professionalName: "Martins",
   institutionalText: null,
-  biography: null,
+  biography: "Martins é terapeuta integrativo, com atuação voltada ao cuidado, ao bem-estar e à qualidade de vida.\n\nSua trajetória profissional inclui formação em terapias integrativas, registro profissional CRT e pós-graduação na área miofascial, conforme as informações fornecidas pela cliente.\n\nSeu trabalho é pautado por uma abordagem individualizada, valorizando a atenção às necessidades de cada pessoa e proporcionando uma experiência de cuidado e acolhimento.",
   registration: null,
   portrait: { src: "/images/martins-retrato.jpg", alt: "Martins sentado à mesa do espaço, usando camisa polo marrom" },
   qualifications: [],

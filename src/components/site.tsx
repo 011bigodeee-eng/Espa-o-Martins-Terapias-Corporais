@@ -309,17 +309,16 @@ export default function Site() {
           </figure>
           <div className="profile-copy reveal">
             <h2 id="profile-title">{verifiedProfile.professionalName}</h2>
-            {verifiedProfile.biography && <p>{verifiedProfile.biography}</p>}
+            {verifiedProfile.biography?.split("\n\n").map(paragraph => <p key={paragraph}>{paragraph}</p>)}
             {verifiedProfile.institutionalText && <p>{verifiedProfile.institutionalText}</p>}
-            {!verifiedProfile.biography && <p className="profile-pending">A apresentação profissional será publicada com a biografia e as qualificações confirmadas por Martins.</p>}
             {verifiedProfile.qualifications.length > 0 && <ul>{verifiedProfile.qualifications.map(item => <li key={item}>{item}</li>)}</ul>}
             {verifiedProfile.registration && <p>{verifiedProfile.registration}</p>}
             {[...verifiedProfile.events, ...verifiedProfile.educationalResources].map(item => <a className="text-link" key={item.url} href={item.url} target="_blank" rel="noopener noreferrer">{item.title}<ArrowUpRight size={16} /></a>)}
             <a className="text-link" href={whatsapp()} target="_blank" rel="noopener noreferrer">Converse com Martins <ArrowUpRight size={17} /></a>
-            <figure className="profile-more">
-              <Image src="/images/martins-sala-atendimento.jpg" alt="Sala de atendimento de Martins com maca, luminária de palha e bancada ao fundo" width={1200} height={1600} sizes="(max-width: 760px) 85vw, 260px" />
-            </figure>
           </div>
+          <figure className="profile-more reveal">
+              <Image src="/images/martins-sala-atendimento.jpg" alt="Sala de atendimento de Martins com maca, luminária de palha e bancada ao fundo" width={1200} height={1600} sizes="(max-width: 760px) 85vw, 260px" />
+          </figure>
         </section>
 
         <section

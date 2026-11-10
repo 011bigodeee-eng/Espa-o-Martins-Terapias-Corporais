@@ -343,7 +343,13 @@ test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page 
   await page.goto("/");
   const profile = page.locator("#martins");
   await expect(profile.getByRole("heading", { name: "Martins", exact: true })).toBeVisible();
-  await expect(profile.getByText(/biografia e as qualificações confirmadas/)).toBeVisible();
+  await expect(profile.locator(".profile-copy > p")).toHaveText([
+    "Martins é terapeuta integrativo, com atuação voltada ao cuidado, ao bem-estar e à qualidade de vida.",
+    "Sua trajetória profissional inclui formação em terapias integrativas, registro profissional CRT e pós-graduação na área miofascial, conforme as informações fornecidas pela cliente.",
+    "Seu trabalho é pautado por uma abordagem individualizada, valorizando a atenção às necessidades de cada pessoa e proporcionando uma experiência de cuidado e acolhimento.",
+  ]);
+  await expect(profile.locator(".profile-pending")).toHaveCount(0);
+  await expect(profile.getByText(/será publicada|em breve|provisóri/)).toHaveCount(0);
   expect(await page.locator("main > section").evaluateAll(sections => sections.slice(0, 3).map(section => section.id))).toEqual(["inicio", "martins", "espaco"]);
   await expect(page.locator(".header .brand-link")).toHaveAttribute("href", /^https:\/\/wa.me\/5511959389897/);
   await expect(page.locator('image[href*="terapias-ilustrativas"]')).toHaveCount(0);
