@@ -41,7 +41,7 @@ export const therapyPhotos: Record<string, { src: string; alt: string }> = {
 
 // Fotos do ambiente não representam a execução das técnicas pendentes.
 export const therapyVenuePhotos: Record<string, { src: string; alt: string }> = {
-  fascia: { src: "/images/sala.png", alt: "Sala do Espaço Martins; fotografia do ambiente, sem demonstração de liberação miofascial" },
+  fascia: { src: "/images/sala-sem-logotipo.png", alt: "Sala do Espaço Martins; fotografia do ambiente, sem demonstração de liberação miofascial" },
   mobility: { src: "/images/consulta.png", alt: "Ambiente do Espaço Martins; fotografia do espaço, sem demonstração de avaliação do movimento" },
 };
 

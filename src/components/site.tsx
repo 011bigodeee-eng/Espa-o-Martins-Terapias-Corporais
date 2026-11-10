@@ -240,7 +240,7 @@ export default function Site() {
         <section className="hero" id="inicio" aria-labelledby="hero-title">
           <div className="hero-image">
             <Image
-              src="/images/sala.png"
+              src="/images/sala-sem-logotipo.png"
               alt="Sala de atendimento do Espaço Martins, com maca e iluminação aconchegante"
               fill
               preload
@@ -306,20 +306,18 @@ export default function Site() {
         <section className="profile-intro section-space container" id="martins" aria-labelledby="profile-title">
           <figure className="profile-photo reveal">
             <Image src={verifiedProfile.portrait!.src} alt={verifiedProfile.portrait!.alt} width={960} height={1280} sizes="(max-width: 760px) 90vw, 42vw" />
-            <figcaption>Martins · Espaço Martins</figcaption>
           </figure>
           <div className="profile-copy reveal">
-            <span className="eyebrow"><span className="tiny-line" /> CONHEÇA O MARTINS</span>
             <h2 id="profile-title">{verifiedProfile.professionalName}</h2>
-            <p>{verifiedProfile.biography || "Um encontro com quem cuida de você, no Espaço Martins."}</p>
-            {verifiedProfile.institutionalText ? <p>{verifiedProfile.institutionalText}</p> : <p className="profile-pending">Apresentação provisória. O texto institucional oficial será disponibilizado em breve.</p>}
+            {verifiedProfile.biography && <p>{verifiedProfile.biography}</p>}
+            {verifiedProfile.institutionalText && <p>{verifiedProfile.institutionalText}</p>}
+            {!verifiedProfile.biography && <p className="profile-pending">A apresentação profissional será publicada com a biografia e as qualificações confirmadas por Martins.</p>}
             {verifiedProfile.qualifications.length > 0 && <ul>{verifiedProfile.qualifications.map(item => <li key={item}>{item}</li>)}</ul>}
             {verifiedProfile.registration && <p>{verifiedProfile.registration}</p>}
             {[...verifiedProfile.events, ...verifiedProfile.educationalResources].map(item => <a className="text-link" key={item.url} href={item.url} target="_blank" rel="noopener noreferrer">{item.title}<ArrowUpRight size={16} /></a>)}
             <a className="text-link" href={whatsapp()} target="_blank" rel="noopener noreferrer">Converse com Martins <ArrowUpRight size={17} /></a>
             <figure className="profile-more">
-              <Image src="/images/martins-coluna.jpg" alt="Martins segurando um modelo anatômico da coluna vertebral" width={1254} height={1254} sizes="(max-width: 760px) 85vw, 320px" />
-              <figcaption>Martins com um modelo anatômico da coluna vertebral.</figcaption>
+              <Image src="/images/martins-sala-atendimento.jpg" alt="Sala de atendimento de Martins com maca, luminária de palha e bancada ao fundo" width={1200} height={1600} sizes="(max-width: 760px) 85vw, 260px" />
             </figure>
           </div>
         </section>
@@ -338,10 +336,6 @@ export default function Site() {
                 sizes="(max-width: 760px) 90vw, 42vw"
                 quality={75}
               />
-            </div>
-            <div className="image-index">
-              <span>01 / O ESPAÇO</span>
-              <span>Bem-vindo ao seu momento.</span>
             </div>
             <div className="about-seal">
               <Hand size={26} strokeWidth={1.5} />
@@ -429,7 +423,6 @@ export default function Site() {
                   ),
                 )}
               </div>
-              <span className="art-note">Fotografias reais de atendimentos com Martins</span>
             </div>
             <div className="therapy-grid" aria-live="polite">
               {filtered.map((therapy) => (
@@ -443,7 +436,6 @@ export default function Site() {
                     aria-label={`Saiba mais sobre ${therapy.name}`}
                   >
                     <TherapyArt theme={therapy.theme} />
-                    <span className="therapy-tag">{therapy.tag}</span>
                     <span className="art-expand">
                       <Plus size={21} />
                     </span>
@@ -652,23 +644,12 @@ export default function Site() {
                   }
                   quality={75}
                 />
-                <span className="gallery-overlay" />
-                <span className="gallery-caption">
-                  <small>
-                    0{index + 1} — {photo.subtitle}
-                  </small>
-                  <strong>{photo.title}</strong>
-                </span>
                 <span className="gallery-expand">
                   <Expand size={18} />
                 </span>
               </button>
             ))}
           </div>
-          <p className="gallery-footnote">
-            <span className="tiny-line" /> Fotografias fornecidas do Espaço
-            Martins · Vila Mariana, São Paulo
-          </p>
         </section>
 
         <section
@@ -979,9 +960,9 @@ export default function Site() {
               profissional.
             </p>
             <Booking therapy={selected.message}>Agendar pelo WhatsApp</Booking>
-            <span className="art-note">
-              {therapyPhotos[selected.theme] ? "Fotografia de atendimento no Espaço Martins." : therapyIllustrations[selected.theme] ? "Imagem ilustrativa gerada por IA. Não representa Martins ou um atendimento real do Espaço Martins." : "Foto do ambiente. Fotografia de atendimento desta técnica ainda não fornecida."}
-            </span>
+            {!therapyPhotos[selected.theme] && <span className="art-note">
+              {therapyIllustrations[selected.theme] ? "Imagem ilustrativa gerada por IA. Não representa Martins ou um atendimento real do Espaço Martins." : "Foto do ambiente. Fotografia de atendimento desta técnica ainda não fornecida."}
+            </span>}
           </div>
         </Modal>
       )}
@@ -1007,7 +988,7 @@ export default function Site() {
           <div className="lightbox-bottom">
             <div>
               <span>0{lightbox + 1} / 03</span>
-              <h2 id="gallery-dialog-title">{gallery[lightbox].subtitle}</h2>
+              <h2 id="gallery-dialog-title" className="sr-only">{gallery[lightbox].subtitle}</h2>
             </div>
             <div className="lightbox-controls">
               <button

@@ -343,12 +343,15 @@ test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page 
   await page.goto("/");
   const profile = page.locator("#martins");
   await expect(profile.getByRole("heading", { name: "Martins", exact: true })).toBeVisible();
-  await expect(profile.getByText(/Apresentação provisória/)).toBeVisible();
+  await expect(profile.getByText(/biografia e as qualificações confirmadas/)).toBeVisible();
   expect(await page.locator("main > section").evaluateAll(sections => sections.slice(0, 3).map(section => section.id))).toEqual(["inicio", "martins", "espaco"]);
   await expect(page.locator(".header .brand-link")).toHaveAttribute("href", /^https:\/\/wa.me\/5511959389897/);
   await expect(page.locator('image[href*="terapias-ilustrativas"]')).toHaveCount(0);
   await profile.locator(".profile-more").scrollIntoViewIfNeeded();
-  await expect(profile.getByAltText("Martins segurando um modelo anatômico da coluna vertebral")).toBeVisible();
+  await expect(profile.getByAltText("Sala de atendimento de Martins com maca, luminária de palha e bancada ao fundo")).toBeVisible();
+  await expect(page.locator('img[src*="martins-coluna"]')).toHaveCount(0);
+  await expect(page.getByText("CONHEÇA O MARTINS", { exact: true })).toHaveCount(0);
+  await expect(profile.locator("figcaption")).toHaveCount(0);
   for (const width of [360, 390, 768, 820, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await profile.scrollIntoViewIfNeeded();
@@ -362,11 +365,19 @@ test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page 
 });
 
 
-test("seis cards com técnicas representadas, legendas honestas e grade responsiva", async ({ page }) => {
+test("seis cards com fotografias sem legendas e grade responsiva", async ({ page }) => {
   await page.goto("/");
   await page.emulateMedia({ reducedMotion: "reduce" });
   const cards = page.locator("#terapias .therapy-card");
   await expect(cards).toHaveCount(6);
+  await expect(cards.locator(".therapy-tag, .therapy-art__caption")).toHaveCount(0);
+  await expect(page.locator(".gallery-caption, .gallery-footnote")).toHaveCount(0);
+  for (const text of ["Para desacelerar", "Atenção às pernas", "Atendimento no Espaço Martins", "Uma pausa para os pés", "Cuidado atento"]) {
+    await expect(page.getByText(text, { exact: true })).toHaveCount(0);
+  }
+  await cards.first().getByRole("button", { name: "Saiba mais sobre Massagem relaxante" }).click();
+  await expect(page.getByRole("dialog").locator(".therapy-art__caption, .art-note")).toHaveCount(0);
+  await page.keyboard.press("Escape");
   await expect(cards.locator("h3")).toHaveText(["Massagem relaxante", "Massagem nas pernas", "Mobilização dos braços", "Reflexologia podal", "Cuidado instrumental", "Massagem nos pés"]);
   const sources = await cards.locator("img").evaluateAll(images => images.map(img => img.getAttribute("src")));
   expect(new Set(sources).size).toBe(6);

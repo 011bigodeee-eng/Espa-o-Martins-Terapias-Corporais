@@ -9,7 +9,7 @@ export function TherapyArt({ theme, className = "" }: { theme: string; className
   return (
     <span className={`therapy-art ${treatment ? "therapy-art--treatment" : illustration ? "therapy-art--illustration" : "therapy-art--venue"} ${className}`}>
       <Image className={`therapy-photo ${treatment || illustration ? "therapy-photo--treatment" : "therapy-photo--venue"}`} src={photo.src} alt={photo.alt} fill sizes="(max-width: 760px) 90vw, (max-width: 1150px) 45vw, 30vw" />
-      <span className="therapy-art__caption">{treatment ? "Atendimento no Espaço Martins" : illustration ? "Imagem ilustrativa · IA" : "Ambiente do Espaço · não demonstra a técnica"}</span>
+      {!treatment && <span className="therapy-art__caption">{illustration ? "Imagem ilustrativa · IA" : "Ambiente do Espaço · não demonstra a técnica"}</span>}
     </span>
   );
 }

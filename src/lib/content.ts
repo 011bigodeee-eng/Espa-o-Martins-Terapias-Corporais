@@ -30,7 +30,6 @@ export const therapies = [
     detail:
       "Uma modalidade de massagem manual voltada ao relaxamento. O atendimento considera suas preferências e o conforto durante a sessão. Converse com Martins sobre seus objetivos para conhecer a proposta mais adequada para você.",
     theme: "relax",
-    tag: "Para desacelerar",
   },
   {
     id: "pernas",
@@ -42,7 +41,6 @@ export const therapies = [
     detail:
       "Na fotografia, Martins realiza atendimento manual na perna, mantendo o restante do corpo coberto. A pressão e a proposta do atendimento são conversadas individualmente. Consulte o profissional para conhecer as técnicas utilizadas e sua adequação ao seu momento.",
     theme: "legs",
-    tag: "Atenção às pernas",
   },
   {
     id: "mobilizacao",
@@ -54,7 +52,6 @@ export const therapies = [
     detail:
       "Na fotografia, Martins acompanha o movimento dos braços com auxílio de um bastão. A amplitude e a forma de execução respeitam as necessidades individuais. Converse com o profissional sobre a proposta do atendimento; não substitui avaliação médica ou acompanhamento especializado.",
     theme: "arms",
-    tag: "Movimento acompanhado",
   },
   {
     id: "reflexologia",
@@ -66,7 +63,6 @@ export const therapies = [
     detail:
       "Técnica de aplicação de pressões em regiões dos pés, voltada ao relaxamento e bem-estar. Durante o primeiro contato, compartilhe suas necessidades para que o profissional avalie a adequação do atendimento.",
     theme: "feet",
-    tag: "Cuidado em cada ponto",
   },
   {
     id: "instrumental",
@@ -78,7 +74,6 @@ export const therapies = [
     detail:
       "A fotografia mostra Martins utilizando um instrumento junto ao pescoço e ombro. Para conhecer o nome específico da técnica, a forma de aplicação e sua adequação ao seu caso, converse diretamente com o profissional antes de agendar.",
     theme: "instrument",
-    tag: "Cuidado atento",
   },
   {
     id: "pes",
@@ -90,7 +85,6 @@ export const therapies = [
     detail:
       "Na fotografia, Martins realiza atendimento manual no pé, com apoio das mãos. A intensidade e a forma de aplicação são ajustadas ao conforto individual. Consulte o profissional sobre as possibilidades de cuidado e as diferenças em relação à reflexologia podal.",
     theme: "footmassage",
-    tag: "Uma pausa para os pés",
   },
   {
     id: "miofascial",
@@ -102,7 +96,6 @@ export const therapies = [
     detail:
       "A fáscia é um tecido que envolve e conecta estruturas do corpo, incluindo os músculos. A liberação miofascial utiliza técnicas manuais sobre esses tecidos, com possíveis objetivos relacionados ao conforto muscular e à mobilidade. A proposta é individual e não garante resultados clínicos.",
     theme: "fascia",
-    tag: "Mais atenção ao movimento",
   },
   {
     id: "biomecanica",
@@ -114,14 +107,13 @@ export const therapies = [
     detail:
       "Para conhecer as técnicas efetivamente realizadas nesse atendimento, suas indicações e sua adequação, converse diretamente com Martins antes de agendar. A definição do atendimento depende das necessidades individuais e dos serviços oferecidos dentro da habilitação profissional. Não substitui diagnóstico médico ou tratamento especializado.",
     theme: "mobility",
-    tag: "Cuidado individualizado",
   },
 ] as const;
 export type Therapy = (typeof therapies)[number];
 
 export const gallery = [
   {
-    src: "/images/sala.png",
+    src: "/images/sala-sem-logotipo.png",
     alt: "Sala de terapias do Espaço Martins com maca, toalhas e iluminação acolhedora",
     title: "Tempo para você",
     subtitle: "Sala de terapias",
