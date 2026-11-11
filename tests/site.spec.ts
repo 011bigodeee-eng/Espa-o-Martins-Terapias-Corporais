@@ -447,24 +447,10 @@ test("fotos uniformes e conteúdo centralizado no celular", async ({ page }) => 
 });
 
 
-test("regiões de cuidado com fotos reais, proporções consistentes e layout responsivo", async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
+test("seção de regiões do corpo removida", async ({ page }) => {
   await page.goto("/");
-  const cards = page.locator(".body-regions .body-region");
-  await expect(cards.locator("h3")).toHaveText(["Costas", "Ombros", "Pernas e joelhos"]);
-  await expect(cards.locator("svg")).toHaveCount(0);
-  await expect(page.getByText("Representação esquemática", { exact: true })).toHaveCount(0);
-  await expect(cards.getByText("Atenção ao seu movimento", { exact: true })).toHaveCount(0);
-  for (const [width, columns] of [[390, 1], [820, 2], [1440, 3]]) {
-    await page.setViewportSize({ width, height: 1000 });
-    for (const image of await cards.locator("img").all()) {
-      await image.scrollIntoViewIfNeeded();
-      await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
-      expect(await image.getAttribute("src")).toMatch(/martins-relaxante-costas|atendimento-massagem|martins-massagem-pernas/);
-    }
-    expect(await page.locator(".body-regions").evaluate(el => getComputedStyle(el).gridTemplateColumns.split(" ").length)).toBe(columns);
-    const heights = await cards.locator(".body-region-photo").evaluateAll(items => items.map(el => el.getBoundingClientRect().height));
-    expect(Math.max(...heights) - Math.min(...heights)).toBeLessThan(2);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  }
+  await expect(page.locator(".body-regions, .body-region")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Costas", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Ombros", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Pernas e joelhos", exact: true })).toHaveCount(0);
 });

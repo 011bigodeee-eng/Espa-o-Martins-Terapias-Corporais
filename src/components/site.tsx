@@ -506,43 +506,13 @@ export default function Site() {
           className="body-section section-space container"
           aria-labelledby="body-title"
         >
-          <div className="section-heading reveal">
-            <div>
-              <span className="eyebrow">
-                <span className="tiny-line" /> CADA CORPO, UMA HISTÓRIA
-              </span>
-              <h2 id="body-title">
-                Atenção individualizada
-                <br />
-                às necessidades <em>do seu corpo.</em>
-              </h2>
-            </div>
-            <p>
-              A escolha do atendimento passa pela escuta das suas necessidades e
-              pelos serviços efetivamente oferecidos.
-            </p>
-          </div>
-          <div className="body-regions">
-            {[
-              { title: "Costas", photo: therapyPhotos.relax },
-              { title: "Ombros", photo: { src: "/images/atendimento-massagem.jpg", alt: "Martins realizando terapia manual nos ombros, com cliente de touca e parte inferior do corpo coberta por toalha limpa" } },
-              { title: "Pernas e joelhos", photo: therapyPhotos.legs },
-            ].map(({ title, photo }) => (
-              <article className="body-region reveal" key={title}>
-                <div className="body-region-photo">
-                  <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 760px) 90vw, (max-width: 1100px) 45vw, 30vw" quality={90} />
-                </div>
-                <h3>{title}</h3>
-              </article>
-            ))}
-          </div>
           <div className="biomechanics">
             <div className="biomechanics-art">
               <TherapyArt theme="mobility" />
             </div>
             <div>
               <span className="eyebrow">CONVERSE COM O PROFISSIONAL</span>
-              <h3>Ajustes biomecânicos ortopédicos</h3>
+              <h3 id="body-title">Ajustes biomecânicos ortopédicos</h3>
               <p>
                 Para conhecer as técnicas realizadas e sua adequação às suas
                 necessidades, converse diretamente com Martins.
