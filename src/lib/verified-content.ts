@@ -31,6 +31,7 @@ export const officialBrand: { light: string | null; dark: string | null } = {
 // Imagens fornecidas pela cliente para o catálogo.
 // Alguns enquadramentos não mostram a cabeça; não se afirma touca visível nesses casos.
 export const therapyPhotos: Record<string, { src: string; alt: string }> = {
+  cups: { src: "/images/ventosaterapia.jpeg", alt: "Ventosas transparentes aplicadas nas costas durante atendimento de ventosaterapia" },
   shiatsu: { src: "/images/shiatsu.png", alt: "Mãos aplicando pressão nas costas de uma pessoa coberta por tecido branco durante Shiatsu" },
   relax: { src: "/images/martins-relaxante-costas.jpg", alt: "Martins realizando massagem nas costas de paciente com touca e parte inferior coberta por toalha" },
   legs: { src: "/images/martins-massagem-pernas.jpg", alt: "Martins realizando atendimento manual na perna, com o restante do corpo coberto por lençol branco" },
@@ -47,7 +48,6 @@ export const therapyVenuePhotos: Record<string, { src: string; alt: string }> = 
 
 // Ilustrações geradas por IA: não retratam Martins nem registros reais do espaço.
 export const therapyIllustrations: Record<string, { src: string; alt: string }> = {
-  cups: { src: "/images/ilustracao-ventosaterapia.webp", alt: "Ilustração por IA de ventosaterapia: aplicação de ventosas transparentes nas costas, paciente com touca e parte inferior coberta por toalha branca" },
   sport: { src: "/images/ilustracao-desportiva.webp", alt: "Ilustração por IA de massagem desportiva: mãos pressionam a panturrilha, com paciente de touca e corpo coberto por toalha branca" },
   stones: { src: "/images/ilustracao-pedras-quentes.webp", alt: "Ilustração por IA de massagem com pedras quentes: terapeuta desliza pedra escura nas costas, com paciente de touca e parte inferior coberta" },
 };

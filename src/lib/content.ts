@@ -85,6 +85,15 @@ export const therapies = [
     theme: "shiatsu",
   },
   {
+    id: "ventosaterapia",
+    name: "Ventosaterapia",
+    category: "Técnicas complementares",
+    message: "a ventosaterapia",
+    description: "A ventosaterapia serve principalmente para aliviar dores musculares, reduzir tensões e promover o relaxamento físico e mental.",
+    detail: "A ventosaterapia serve principalmente para aliviar dores musculares, reduzir tensões e promover o relaxamento físico e mental.",
+    theme: "cups",
+  },
+  {
     id: "miofascial",
     name: "Liberação miofascial",
     category: "Mobilidade & conforto",

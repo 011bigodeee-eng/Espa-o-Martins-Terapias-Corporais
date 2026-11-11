@@ -84,7 +84,7 @@ test("filtros, detalhes, FAQ, privacidade e mapa sob demanda", async ({
   await page.getByRole("button", { name: "Relaxamento", exact: true }).click();
   await expect(page.locator(".therapy-card")).toHaveCount(3);
   await page.getByRole("button", { name: "Todas", exact: true }).click();
-  await expect(page.locator(".therapy-card")).toHaveCount(6);
+  await expect(page.locator(".therapy-card")).toHaveCount(7);
   await page
     .getByRole("button", {
       name: "Saiba mais sobre Massagem relaxante",
@@ -365,16 +365,16 @@ test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page 
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
   }
   await page.locator("#terapias").scrollIntoViewIfNeeded();
-  await expect(page.locator("#terapias .therapy-photo")).toHaveCount(6);
+  await expect(page.locator("#terapias .therapy-photo")).toHaveCount(7);
   await expect.poll(() => page.locator("#terapias .therapy-photo").evaluateAll(images => images.every(image => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
 });
 
 
-test("seis cards com fotografias sem legendas e grade responsiva", async ({ page }) => {
+test("sete cards com fotografias sem legendas e grade responsiva", async ({ page }) => {
   await page.goto("/");
   await page.emulateMedia({ reducedMotion: "reduce" });
   const cards = page.locator("#terapias .therapy-card");
-  await expect(cards).toHaveCount(6);
+  await expect(cards).toHaveCount(7);
   await expect(cards.locator(".therapy-tag, .therapy-art__caption")).toHaveCount(0);
   await expect(page.locator(".gallery-caption, .gallery-footnote")).toHaveCount(0);
   for (const text of ["Para desacelerar", "Atenção às pernas", "Atendimento no Espaço Martins", "Uma pausa para os pés", "Cuidado atento"]) {
@@ -383,7 +383,7 @@ test("seis cards com fotografias sem legendas e grade responsiva", async ({ page
   await cards.first().getByRole("button", { name: "Saiba mais sobre Massagem relaxante" }).click();
   await expect(page.getByRole("dialog").locator(".therapy-art__caption, .art-note")).toHaveCount(0);
   await page.keyboard.press("Escape");
-  await expect(cards.locator("h3")).toHaveText(["Massagem relaxante", "Massagem desportiva", "Reflexologia podal", "Técnica de liberação Miofacial com instrumento na cervical", "Massagem nos pés", "Shiatsu"]);
+  await expect(cards.locator("h3")).toHaveText(["Massagem relaxante", "Massagem desportiva", "Reflexologia podal", "Técnica de liberação Miofacial com instrumento na cervical", "Massagem nos pés", "Shiatsu", "Ventosaterapia"]);
   await expect(page.getByText("Mobilização dos braços", { exact: true })).toHaveCount(0);
   const shiatsu = page.locator(".therapy-shiatsu");
   await shiatsu.getByRole("button", { name: "Saiba mais sobre Shiatsu", exact: true }).click();
@@ -392,13 +392,19 @@ test("seis cards com fotografias sem legendas e grade responsiva", async ({ page
   await expect(page.getByRole("dialog").locator("img")).toHaveAttribute("src", /shiatsu.png/);
   await expect(page.getByRole("dialog").getByRole("link", { name: "Agendar pelo WhatsApp" })).toHaveAttribute("href", /Shiatsu/);
   await page.keyboard.press("Escape");
+  await page.locator(".therapy-ventosaterapia").getByRole("button", { name: "Saiba mais sobre Ventosaterapia", exact: true }).click();
+  await expect(page.getByRole("dialog").getByRole("heading", { name: "Ventosaterapia", exact: true })).toBeVisible();
+  await expect(page.getByRole("dialog").locator(".therapy-modal-content > p").first()).toHaveText("A ventosaterapia serve principalmente para aliviar dores musculares, reduzir tensões e promover o relaxamento físico e mental.");
+  await expect(page.getByRole("dialog").locator("img")).toHaveAttribute("src", /ventosaterapia.jpeg/);
+  await expect(page.getByRole("dialog").getByRole("link", { name: "Agendar pelo WhatsApp" })).toHaveAttribute("href", /ventosaterapia/);
+  await page.keyboard.press("Escape");
   const sources = await cards.locator("img").evaluateAll(images => images.map(img => img.getAttribute("src")));
-  expect(new Set(sources).size).toBe(6);
-  expect(sources.every(src => src?.includes("martins-") || src?.includes("shiatsu.png"))).toBe(true);
+  expect(new Set(sources).size).toBe(7);
+  expect(sources.every(src => src?.includes("martins-") || src?.includes("shiatsu.png") || src?.includes("ventosaterapia.jpeg"))).toBe(true);
   await expect(page.getByText("O cuidado em foco.", { exact: true })).toHaveCount(0);
   await expect(page.locator("#terapias .therapy-art--venue")).toHaveCount(0);
   await expect(page.locator("#terapias .therapy-art--illustration")).toHaveCount(0);
-  await expect(page.locator("#terapias .therapy-art--treatment")).toHaveCount(6);
+  await expect(page.locator("#terapias .therapy-art--treatment")).toHaveCount(7);
   for (const [width, columns] of [[390, 1], [820, 2], [1440, 3]]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const card of await cards.filter({ has: page.locator("img") }).all()) {
@@ -429,7 +435,7 @@ test("fotos uniformes e conteúdo centralizado no celular", async ({ page }) => 
   for (const width of [390, 820, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     const photos = await page.locator(".therapy-grid img").evaluateAll(images => images.map(img => ({fit: getComputedStyle(img).objectFit, width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height})));
-    expect(photos).toHaveLength(6);
+    expect(photos).toHaveLength(7);
     expect(photos.every(photo => photo.fit === "cover")).toBe(true);
     expect(Math.max(...photos.map(photo => photo.height)) - Math.min(...photos.map(photo => photo.height))).toBeLessThan(2);
   }
