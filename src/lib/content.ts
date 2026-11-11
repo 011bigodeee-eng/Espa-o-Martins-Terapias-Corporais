@@ -33,13 +33,13 @@ export const therapies = [
   },
   {
     id: "pernas",
-    name: "Massagem nas pernas",
+    name: "Massagem desportiva",
     category: "Corpo em movimento",
-    message: "a massagem nas pernas",
+    message: "a massagem desportiva",
     description:
       "Cuidado manual na musculatura das pernas, com atenção ao conforto e às necessidades de cada pessoa.",
     detail:
-      "Na fotografia, Martins realiza atendimento manual na perna, mantendo o restante do corpo coberto. A pressão e a proposta do atendimento são conversadas individualmente. Consulte o profissional para conhecer as técnicas utilizadas e sua adequação ao seu momento.",
+      "É uma técnica terapêutica manual focada em músculos e grupos musculares específicos. Aumenta o fluxo sanguíneo e linfático, facilitando a eliminação de toxinas acumuladas no tecido.",
     theme: "legs",
   },
   {

@@ -80,7 +80,7 @@ test("filtros, detalhes, FAQ, privacidade e mapa sob demanda", async ({
   await page.goto("/");
   await page.getByRole("button", { name: "Movimento", exact: true }).click();
   await expect(page.locator(".therapy-card")).toHaveCount(2);
-  await expect(page.locator(".therapy-card h3")).toHaveText(["Massagem nas pernas", "Mobilização dos braços"]);
+  await expect(page.locator(".therapy-card h3")).toHaveText(["Massagem desportiva", "Mobilização dos braços"]);
   await page.getByRole("button", { name: "Relaxamento", exact: true }).click();
   await expect(page.locator(".therapy-card")).toHaveCount(3);
   await page.getByRole("button", { name: "Todas", exact: true }).click();
@@ -383,7 +383,7 @@ test("seis cards com fotografias sem legendas e grade responsiva", async ({ page
   await cards.first().getByRole("button", { name: "Saiba mais sobre Massagem relaxante" }).click();
   await expect(page.getByRole("dialog").locator(".therapy-art__caption, .art-note")).toHaveCount(0);
   await page.keyboard.press("Escape");
-  await expect(cards.locator("h3")).toHaveText(["Massagem relaxante", "Massagem nas pernas", "Mobilização dos braços", "Reflexologia podal", "Cuidado instrumental", "Massagem nos pés"]);
+  await expect(cards.locator("h3")).toHaveText(["Massagem relaxante", "Massagem desportiva", "Mobilização dos braços", "Reflexologia podal", "Cuidado instrumental", "Massagem nos pés"]);
   const sources = await cards.locator("img").evaluateAll(images => images.map(img => img.getAttribute("src")));
   expect(new Set(sources).size).toBe(6);
   expect(sources.every(src => src?.includes("martins-"))).toBe(true);
