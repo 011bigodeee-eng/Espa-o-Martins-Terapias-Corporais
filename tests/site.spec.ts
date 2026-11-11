@@ -408,7 +408,7 @@ test("sete cards com fotografias sem legendas e grade responsiva", async ({ page
       await expect(card.locator(".therapy-actions a")).toHaveAttribute("href", /^https:\/\/wa.me\//);
     }
     expect(await page.locator(".therapy-grid").evaluate(el => getComputedStyle(el).gridTemplateColumns.split(" ").length)).toBe(columns);
-    const sizes = await cards.locator(".therapy-art:not(.therapy-art--stones)").evaluateAll(items => items.map(el => ({ w: el.getBoundingClientRect().width, h: el.getBoundingClientRect().height })));
+    const sizes = await cards.locator(".therapy-art:not(.therapy-art--natural)").evaluateAll(items => items.map(el => ({ w: el.getBoundingClientRect().width, h: el.getBoundingClientRect().height })));
     expect(Math.max(...sizes.map(s => s.h)) - Math.min(...sizes.map(s => s.h))).toBeLessThan(2);
   }
 });
@@ -429,13 +429,15 @@ test("fotos uniformes e conteúdo centralizado no celular", async ({ page }) => 
   }
   for (const width of [390, 820, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    const photos = await page.locator(".therapy-grid .therapy-art:not(.therapy-art--stones) img").evaluateAll(images => images.map(img => ({fit: getComputedStyle(img).objectFit, width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height})));
-    const stones = page.locator(".therapy-pedras-quentes .therapy-art");
-    const bounds = await stones.boundingBox();
-    expect(Math.abs(bounds!.width - bounds!.height)).toBeLessThan(2);
-    expect(await stones.locator("img").evaluate(img => getComputedStyle(img).objectFit)).toBe("contain");
-    await expect(stones.locator("img")).toHaveAttribute("src", /q=95/);
-    expect(photos).toHaveLength(6);
+    const photos = await page.locator(".therapy-grid .therapy-art:not(.therapy-art--natural) img").evaluateAll(images => images.map(img => ({fit: getComputedStyle(img).objectFit, width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height})));
+    for (const [id, ratio] of [["pedras-quentes", 1], ["ventosaterapia", 948 / 777], ["shiatsu", 1.5]] as const) {
+      const art = page.locator(`.therapy-${id} .therapy-art`);
+      const bounds = await art.boundingBox();
+      expect(Math.abs(bounds!.width / bounds!.height - ratio)).toBeLessThan(0.01);
+      expect(await art.locator("img").evaluate(img => getComputedStyle(img).objectFit)).toBe("contain");
+      await expect(art.locator("img")).toHaveAttribute("src", /q=95/);
+    }
+    expect(photos).toHaveLength(4);
     expect(photos.every(photo => photo.fit === "cover")).toBe(true);
     expect(Math.max(...photos.map(photo => photo.height)) - Math.min(...photos.map(photo => photo.height))).toBeLessThan(2);
   }

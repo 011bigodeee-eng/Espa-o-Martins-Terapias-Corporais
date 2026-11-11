@@ -3065,7 +3065,10 @@ summary:focus-visible {
   .body-regions .body-region h3 { padding: 20px; }
 }
 
-/* Preserva o enquadramento quadrado da foto de pedras quentes. */
-.therapy-grid .therapy-art--stones { aspect-ratio: 1; }
-.therapy-grid .therapy-art--stones .therapy-photo { object-fit: contain; object-position: center; }
-.therapy-modal > .therapy-art--stones { min-height: 0; height: auto; aspect-ratio: 1; align-self: start; }
+/* Preserva o enquadramento original das fotografias fornecidas. */
+.therapy-art--stones { --photo-ratio: 1; }
+.therapy-art--cups { --photo-ratio: 948 / 777; }
+.therapy-art--shiatsu { --photo-ratio: 3 / 2; }
+.therapy-grid .therapy-art--natural { aspect-ratio: var(--photo-ratio); }
+.therapy-grid .therapy-art--natural .therapy-photo { object-fit: contain; object-position: center; }
+.therapy-modal > .therapy-art--natural { min-height: 0; height: auto; aspect-ratio: var(--photo-ratio); align-self: start; }
