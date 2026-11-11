@@ -28,7 +28,7 @@ export const therapies = [
     description:
       "Um convite a desacelerar. Toques que acolhem o corpo e proporcionam uma experiência de relaxamento e bem-estar.",
     detail:
-      "Uma modalidade de massagem manual voltada ao relaxamento. O atendimento considera suas preferências e o conforto durante a sessão. Converse com Martins sobre seus objetivos para conhecer a proposta mais adequada para você.",
+      "Uma modalidade de massagem manual voltada ao relaxamento. O atendimento considera suas preferências e o conforto durante a sessão.",
     theme: "relax",
   },
   {
