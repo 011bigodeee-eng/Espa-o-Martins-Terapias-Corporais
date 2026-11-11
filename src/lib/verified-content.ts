@@ -13,7 +13,7 @@ export const verifiedProfile: {
 } = {
   professionalName: "Martins",
   institutionalText: null,
-  biography: "Martins é terapeuta integrativo, com atuação voltada ao cuidado, ao bem-estar e à qualidade de vida.\n\nSua trajetória profissional inclui formação em terapias integrativas, registro profissional CRT e pós-graduação na área miofascial, conforme as informações fornecidas pela cliente.\n\nSeu trabalho é pautado por uma abordagem individualizada, valorizando a atenção às necessidades de cada pessoa e proporcionando uma experiência de cuidado e acolhimento.",
+  biography: "Com um olhar atento e humanizado para o bem-estar, Martins atua como terapeuta integrativo e massoterapeuta, oferecendo cuidados que buscam promover o equilíbrio corporal, o relaxamento e a qualidade de vida.\n\nPor meio de técnicas de liberação Miofacial manual e instrumental seu trabalho é voltado ao alívio de tensões musculares, a dores, à melhora da mobilidade, ao relaxamento e à conexão entre corpo e mente.",
   registration: null,
   portrait: { src: "/images/martins-retrato.jpg", alt: "Martins sentado à mesa do espaço, usando camisa polo marrom" },
   qualifications: [],

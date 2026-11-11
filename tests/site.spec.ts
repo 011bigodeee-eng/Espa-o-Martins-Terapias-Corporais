@@ -344,17 +344,16 @@ test("apresentação, fotografias oficiais e marca com WhatsApp", async ({ page 
   const profile = page.locator("#martins");
   await expect(profile.getByRole("heading", { name: "Martins", exact: true })).toBeVisible();
   await expect(profile.locator(".profile-copy > p")).toHaveText([
-    "Martins é terapeuta integrativo, com atuação voltada ao cuidado, ao bem-estar e à qualidade de vida.",
-    "Sua trajetória profissional inclui formação em terapias integrativas, registro profissional CRT e pós-graduação na área miofascial, conforme as informações fornecidas pela cliente.",
-    "Seu trabalho é pautado por uma abordagem individualizada, valorizando a atenção às necessidades de cada pessoa e proporcionando uma experiência de cuidado e acolhimento.",
+    "Com um olhar atento e humanizado para o bem-estar, Martins atua como terapeuta integrativo e massoterapeuta, oferecendo cuidados que buscam promover o equilíbrio corporal, o relaxamento e a qualidade de vida.",
+    "Por meio de técnicas de liberação Miofacial manual e instrumental seu trabalho é voltado ao alívio de tensões musculares, a dores, à melhora da mobilidade, ao relaxamento e à conexão entre corpo e mente.",
   ]);
   await expect(profile.locator(".profile-pending")).toHaveCount(0);
   await expect(profile.getByText(/será publicada|em breve|provisóri/)).toHaveCount(0);
   expect(await page.locator("main > section").evaluateAll(sections => sections.slice(0, 3).map(section => section.id))).toEqual(["inicio", "martins", "espaco"]);
   await expect(page.locator(".header .brand-link")).toHaveAttribute("href", /^https:\/\/wa.me\/5511959389897/);
   await expect(page.locator('image[href*="terapias-ilustrativas"]')).toHaveCount(0);
-  await profile.locator(".profile-more").scrollIntoViewIfNeeded();
-  await expect(profile.getByAltText("Sala de atendimento de Martins com maca, luminária de palha e bancada ao fundo")).toBeVisible();
+  await expect(profile.locator("img")).toHaveCount(1);
+  await expect(profile.locator("img")).toHaveAttribute("alt", "Martins sentado à mesa do espaço, usando camisa polo marrom");
   await expect(page.locator('img[src*="martins-coluna"]')).toHaveCount(0);
   await expect(page.getByText("CONHEÇA O MARTINS", { exact: true })).toHaveCount(0);
   await expect(profile.locator("figcaption")).toHaveCount(0);
@@ -413,7 +412,7 @@ test("fotos uniformes e conteúdo centralizado no celular", async ({ page }) => 
     for (const selector of [".hero-content", ".profile-copy", ".about-copy", ".therapy-copy", ".experience-top", ".faq-intro", ".location-info", ".footer"]) {
       expect(await page.locator(selector).first().evaluate(el => getComputedStyle(el).textAlign)).toBe("center");
     }
-    const photo = page.locator(".profile-more");
+    const photo = page.locator(".profile-photo");
     const box = await photo.boundingBox();
     const clientWidth = await page.evaluate(() => document.documentElement.clientWidth);
     expect(Math.abs(box!.x + box!.width / 2 - clientWidth / 2)).toBeLessThan(2);
