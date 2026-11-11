@@ -43,17 +43,6 @@ export const therapies = [
     theme: "legs",
   },
   {
-    id: "mobilizacao",
-    name: "Mobilização dos braços",
-    category: "Corpo em movimento",
-    message: "a mobilização dos braços",
-    description:
-      "Movimentos acompanhados de perto, com apoio do profissional e atenção ao conforto durante o atendimento.",
-    detail:
-      "Na fotografia, Martins acompanha o movimento dos braços com auxílio de um bastão. A amplitude e a forma de execução respeitam as necessidades individuais. Converse com o profissional sobre a proposta do atendimento; não substitui avaliação médica ou acompanhamento especializado.",
-    theme: "arms",
-  },
-  {
     id: "reflexologia",
     name: "Reflexologia podal",
     category: "Pausa & bem-estar",

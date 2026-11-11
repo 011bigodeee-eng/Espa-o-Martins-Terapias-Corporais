@@ -184,7 +184,7 @@ export default function Site() {
         (filter === "Relaxamento"
           ? ["relaxante", "reflexologia", "pes"].includes(t.id)
           : filter === "Movimento"
-            ? ["pernas", "mobilizacao"].includes(t.id)
+            ? t.id === "pernas"
             : ["instrumental"].includes(t.id))),
   );
 
@@ -492,7 +492,7 @@ export default function Site() {
                 </Booking>
                 <button
                   className="button button-outline"
-                  onClick={() => setSelected(therapies[6])}
+                  onClick={() => setSelected(therapies.find(therapy => therapy.id === "miofascial")!)}
                 >
                   Conhecer a técnica <Plus size={16} />
                 </button>
@@ -551,7 +551,7 @@ export default function Site() {
               </p>
               <button
                 className="text-link"
-                onClick={() => setSelected(therapies[7])}
+                onClick={() => setSelected(therapies.find(therapy => therapy.id === "biomecanica")!)}
               >
                 Saiba mais <Plus size={14} />
               </button>
