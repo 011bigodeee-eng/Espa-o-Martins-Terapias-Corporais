@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { therapyPhotos, therapyVenuePhotos, therapyIllustrations } from "@/lib/verified-content";
 
-export function TherapyArt({ theme, className = "" }: { theme: string; className?: string }) {
+export function TherapyArt({ theme, className = "", showCaption = true }: { theme: string; className?: string; showCaption?: boolean }) {
   const treatment = therapyPhotos[theme];
   const illustration = therapyIllustrations[theme];
   const photo = treatment || illustration || therapyVenuePhotos[theme];
@@ -9,7 +9,7 @@ export function TherapyArt({ theme, className = "" }: { theme: string; className
   return (
     <span className={`therapy-art ${treatment ? "therapy-art--treatment" : illustration ? "therapy-art--illustration" : "therapy-art--venue"} ${className}`}>
       <Image className={`therapy-photo ${treatment || illustration ? "therapy-photo--treatment" : "therapy-photo--venue"}`} src={photo.src} alt={photo.alt} fill sizes="(max-width: 760px) 90vw, (max-width: 1150px) 45vw, 30vw" />
-      {!treatment && <span className="therapy-art__caption">{illustration ? "Imagem ilustrativa · IA" : "Ambiente do Espaço · não demonstra a técnica"}</span>}
+      {showCaption && !treatment && <span className="therapy-art__caption">{illustration ? "Imagem ilustrativa · IA" : "Ambiente do Espaço · não demonstra a técnica"}</span>}
     </span>
   );
 }

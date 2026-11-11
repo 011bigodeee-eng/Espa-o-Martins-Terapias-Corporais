@@ -180,6 +180,10 @@ test("liberação miofascial: conteúdo, ações e proporções do redesign", as
 }) => {
   await page.goto("/");
   const section = page.locator("#liberacao-miofascial");
+  await expect(section.locator(".therapy-art__caption")).toHaveCount(0);
+  await expect(section.locator(".fascia-art img")).toHaveAttribute("src", /sala-sem-logotipo/);
+  await expect(section.locator(".fascia-copy > p")).toHaveText("A liberação instrumental é uma técnica terapêutica utilizada por terapeutas e profissionais de saúde para tratar restrições, aderência ou tensões no tecido miofascial (a fáscia que envolve os músculos).");
+
   await expect(section.getByRole("heading")).toHaveText(
     "Movimento, cuidado e atenção ao seu corpo.",
   );
@@ -206,9 +210,6 @@ test("liberação miofascial: conteúdo, ações e proporções do redesign", as
     const layout = await section.evaluate((el) => {
       const photo = el.querySelector(".fascia-art")!.getBoundingClientRect();
       const copy = el.querySelector(".fascia-copy")!.getBoundingClientRect();
-      const label = el
-        .querySelector(".therapy-art__caption")!
-        .getBoundingClientRect();
       const buttons = Array.from(
         el.querySelectorAll(".fascia-actions .button"),
       ).map((button) => {
@@ -223,13 +224,11 @@ test("liberação miofascial: conteúdo, ações e proporções do redesign", as
           height: photo.height,
         },
         copy: { top: copy.top, bottom: copy.bottom, width: copy.width },
-        labelHeight: label.height,
         buttons,
         headingFont: getComputedStyle(el.querySelector("h2")!).fontFamily,
       };
     });
     expect(layout.headingFont).toContain("Manrope");
-    expect(layout.labelHeight).toBeLessThan(28);
     for (const button of layout.buttons)
       expect(button.height).toBeGreaterThanOrEqual(51);
     if (width > 760) {

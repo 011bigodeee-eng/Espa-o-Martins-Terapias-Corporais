@@ -471,7 +471,7 @@ export default function Site() {
         >
           <div className="fascia-inner container">
             <div className="fascia-art">
-              <TherapyArt theme="fascia" />
+              <TherapyArt theme="fascia" showCaption={false} />
             </div>
             <div className="fascia-copy">
               <span className="eyebrow">
@@ -482,9 +482,7 @@ export default function Site() {
               </h2>
               <span className="fascia-subtitle">Liberação miofascial</span>
               <p>
-                Uma abordagem manual voltada às estruturas musculares e
-                fasciais, respeitando as necessidades individuais e os objetivos
-                de cada atendimento.
+                A liberação instrumental é uma técnica terapêutica utilizada por terapeutas e profissionais de saúde para tratar restrições, aderência ou tensões no tecido miofascial (a fáscia que envolve os músculos).
               </p>
               <div className="fascia-actions">
                 <Booking therapy="a liberação miofascial">
