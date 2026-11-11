@@ -3072,3 +3072,7 @@ summary:focus-visible {
 .therapy-grid .therapy-art--natural { aspect-ratio: var(--photo-ratio); }
 .therapy-grid .therapy-art--natural .therapy-photo { object-fit: contain; object-position: center; }
 .therapy-modal > .therapy-art--natural { min-height: 0; height: auto; aspect-ratio: var(--photo-ratio); align-self: start; }
+
+.payment-section { background: var(--beige); text-align: center; }
+.payment-section h2 { margin: 0 0 20px; font-size: clamp(28px, 4vw, 46px); }
+.payment-section p { margin: 0; font-size: clamp(18px, 2vw, 24px); line-height: 1.6; }

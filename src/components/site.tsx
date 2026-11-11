@@ -636,6 +636,13 @@ export default function Site() {
           </div>
         </section>
 
+        <section className="payment-section section-space" aria-labelledby="payment-title">
+          <div className="container">
+            <h2 id="payment-title">Formas de pagamentos</h2>
+            <p>Pix, débito e crédito.</p>
+          </div>
+        </section>
+
         <section
           className="location-section"
           id="localizacao"
