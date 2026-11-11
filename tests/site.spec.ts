@@ -383,7 +383,7 @@ test("seis cards com fotografias sem legendas e grade responsiva", async ({ page
   await cards.first().getByRole("button", { name: "Saiba mais sobre Massagem relaxante" }).click();
   await expect(page.getByRole("dialog").locator(".therapy-art__caption, .art-note")).toHaveCount(0);
   await page.keyboard.press("Escape");
-  await expect(cards.locator("h3")).toHaveText(["Massagem relaxante", "Massagem desportiva", "Reflexologia podal", "Cuidado instrumental", "Massagem nos pés", "Shiatsu"]);
+  await expect(cards.locator("h3")).toHaveText(["Massagem relaxante", "Massagem desportiva", "Reflexologia podal", "Técnica de liberação Miofacial com instrumento na cervical", "Massagem nos pés", "Shiatsu"]);
   await expect(page.getByText("Mobilização dos braços", { exact: true })).toHaveCount(0);
   const shiatsu = page.locator(".therapy-shiatsu");
   await shiatsu.getByRole("button", { name: "Saiba mais sobre Shiatsu", exact: true }).click();

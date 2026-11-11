@@ -55,13 +55,13 @@ export const therapies = [
   },
   {
     id: "instrumental",
-    name: "Cuidado instrumental",
+    name: "Técnica de liberação Miofacial com instrumento na cervical",
     category: "Técnicas complementares",
-    message: "o cuidado instrumental na região do pescoço e ombro",
+    message: "a técnica de liberação Miofacial com instrumento na cervical",
     description:
       "Atendimento com instrumento na região do pescoço e ombro, com cuidado e atenção individualizada.",
     detail:
-      "A fotografia mostra Martins utilizando um instrumento junto ao pescoço e ombro. Para conhecer o nome específico da técnica, a forma de aplicação e sua adequação ao seu caso, converse diretamente com o profissional antes de agendar.",
+      "Técnica de terapia manual focada em aliviar tensões, restaurar o deslizamento natural da fáscia ( tecido conjuntivo que envolve os músculos) e da musculatura do pescoço.",
     theme: "instrument",
   },
   {
