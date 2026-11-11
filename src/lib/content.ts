@@ -50,7 +50,7 @@ export const therapies = [
     description:
       "Pressões em regiões dos pés em uma experiência dedicada ao relaxamento e à sensação de bem-estar.",
     detail:
-      "Técnica de aplicação de pressões em regiões dos pés, voltada ao relaxamento e bem-estar. Durante o primeiro contato, compartilhe suas necessidades para que o profissional avalie a adequação do atendimento.",
+      "A reflexologia podal é uma técnica terapêutica que consiste na aplicação de pressão em pontos específicos dos pés, os quais correspondem a órgãos e regiões de todo o corpo.",
     theme: "feet",
   },
   {
