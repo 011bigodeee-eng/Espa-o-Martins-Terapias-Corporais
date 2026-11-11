@@ -65,17 +65,6 @@ export const therapies = [
     theme: "instrument",
   },
   {
-    id: "pes",
-    name: "Massagem nos pés",
-    category: "Pausa & bem-estar",
-    message: "a massagem nos pés",
-    description:
-      "Toques manuais nos pés em um atendimento dedicado ao conforto e ao seu momento de pausa.",
-    detail:
-      "Na fotografia, Martins realiza atendimento manual no pé, com apoio das mãos. A intensidade e a forma de aplicação são ajustadas ao conforto individual. Consulte o profissional sobre as possibilidades de cuidado e as diferenças em relação à reflexologia podal.",
-    theme: "footmassage",
-  },
-  {
     id: "shiatsu",
     name: "Shiatsu",
     category: "Técnicas complementares",

@@ -37,7 +37,6 @@ export const therapyPhotos: Record<string, { src: string; alt: string }> = {
   legs: { src: "/images/martins-massagem-pernas.jpg", alt: "Martins realizando atendimento manual na perna, com o restante do corpo coberto por lençol branco" },
   feet: { src: "/images/martins-reflexologia-podal.jpg", alt: "Martins realizando reflexologia podal, com foco nas mãos e no pé e corpo coberto por lençol" },
   instrument: { src: "/images/martins-tecnica-instrumental.jpg", alt: "Martins utilizando um instrumento junto ao pescoço e ombro de paciente com touca" },
-  footmassage: { src: "/images/martins-massagem-pes.jpg", alt: "Martins realizando atendimento manual no pé de paciente sobre maca com lençol branco" },
 };
 
 // Fotos do ambiente não representam a execução das técnicas pendentes.
