@@ -179,7 +179,7 @@ export default function Site() {
     );
   const filtered = therapies.filter(
     (t) =>
-      !["miofascial", "biomecanica"].includes(t.id) &&
+      t.id !== "miofascial" &&
       (filter === "Todas" ||
         (filter === "Relaxamento"
           ? ["relaxante", "reflexologia", "pedras-quentes"].includes(t.id)
@@ -500,39 +500,6 @@ export default function Site() {
               </span>
             </div>
           </div>
-        </section>
-
-        <section
-          className="body-section section-space container"
-          aria-labelledby="body-title"
-        >
-          <div className="biomechanics">
-            <div className="biomechanics-art">
-              <TherapyArt theme="mobility" />
-            </div>
-            <div>
-              <span className="eyebrow">CONVERSE COM O PROFISSIONAL</span>
-              <h3 id="body-title">Ajustes biomecânicos ortopédicos</h3>
-              <p>
-                Para conhecer as técnicas realizadas e sua adequação às suas
-                necessidades, converse diretamente com Martins.
-              </p>
-              <button
-                className="text-link"
-                onClick={() => setSelected(therapies.find(therapy => therapy.id === "biomecanica")!)}
-              >
-                Saiba mais <Plus size={14} />
-              </button>
-            </div>
-            <Booking therapy="os ajustes biomecânicos ortopédicos">
-              Consultar atendimento
-            </Booking>
-          </div>
-          <p className="care-note">
-            Os atendimentos não substituem diagnóstico médico ou tratamento
-            especializado. A adequação de cada técnica deve ser conversada com o
-            profissional.
-          </p>
         </section>
 
         <section

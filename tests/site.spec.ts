@@ -105,18 +105,8 @@ test("filtros, detalhes, FAQ, privacidade e mapa sob demanda", async ({
       exact: true,
     }),
   ).toBeFocused();
-  await page
-    .locator(".biomechanics")
-    .getByRole("button", { name: "Saiba mais" })
-    .click();
-  await expect(page.getByRole("dialog").getByRole("heading")).toHaveText(
-    "Ajustes biomecânicos ortopédicos",
-  );
-  await expect(page.getByRole("dialog").getByRole("link")).toHaveAttribute(
-    "href",
-    /ajustes%20biomec%C3%A2nicos/,
-  );
-  await page.keyboard.press("Escape");
+  await expect(page.locator(".biomechanics, .body-section")).toHaveCount(0);
+  await expect(page.getByText("Ajustes biomecânicos ortopédicos", { exact: true })).toHaveCount(0);
   const question = page
     .locator("summary")
     .filter({ hasText: "Qual é a duração de uma sessão?" });

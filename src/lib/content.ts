@@ -102,17 +102,6 @@ export const therapies = [
       "A fáscia é um tecido que envolve e conecta estruturas do corpo, incluindo os músculos. A liberação miofascial utiliza técnicas manuais sobre esses tecidos, com possíveis objetivos relacionados ao conforto muscular e à mobilidade. A proposta é individual e não garante resultados clínicos.",
     theme: "fascia",
   },
-  {
-    id: "biomecanica",
-    name: "Ajustes biomecânicos ortopédicos",
-    category: "Converse com o profissional",
-    message: "os ajustes biomecânicos ortopédicos",
-    description:
-      "Conheça as técnicas realizadas e converse sobre sua adequação às suas necessidades.",
-    detail:
-      "Para conhecer as técnicas efetivamente realizadas nesse atendimento, suas indicações e sua adequação, converse diretamente com Martins antes de agendar. A definição do atendimento depende das necessidades individuais e dos serviços oferecidos dentro da habilitação profissional. Não substitui diagnóstico médico ou tratamento especializado.",
-    theme: "mobility",
-  },
 ] as const;
 export type Therapy = (typeof therapies)[number];
 
