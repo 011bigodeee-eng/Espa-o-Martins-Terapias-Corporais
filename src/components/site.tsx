@@ -185,7 +185,7 @@ export default function Site() {
           ? ["relaxante", "reflexologia", "pes"].includes(t.id)
           : filter === "Movimento"
             ? t.id === "pernas"
-            : ["instrumental"].includes(t.id))),
+            : ["instrumental", "shiatsu"].includes(t.id))),
   );
 
   return (

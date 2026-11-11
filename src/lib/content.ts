@@ -76,6 +76,15 @@ export const therapies = [
     theme: "footmassage",
   },
   {
+    id: "shiatsu",
+    name: "Shiatsu",
+    category: "Técnicas complementares",
+    message: "o Shiatsu",
+    description: "É uma técnica de massagem terapêutica de origem japonesa cujo nome significa literalmente “pressão com os dedos” para reequilibrar o fluxo de energia.",
+    detail: "É uma técnica de massagem terapêutica de origem japonesa cujo nome significa literalmente “pressão com os dedos” para reequilibrar o fluxo de energia.",
+    theme: "shiatsu",
+  },
+  {
     id: "miofascial",
     name: "Liberação miofascial",
     category: "Mobilidade & conforto",
