@@ -34,14 +34,12 @@ import {
   therapies,
   gallery,
   faqs,
-  experience,
   type Therapy,
 } from "@/lib/content";
 
 const nav = [
   ["O espaço", "espaco"],
   ["Terapias", "terapias"],
-  ["A experiência", "experiencia"],
   ["Localização", "localizacao"],
 ];
 
@@ -498,42 +496,6 @@ export default function Site() {
               <span className="fascia-caption">
                 Atendimento individualizado para homens e mulheres.
               </span>
-            </div>
-          </div>
-        </section>
-
-        <section
-          className="experience section-space"
-          id="experiencia"
-          aria-labelledby="experience-title"
-        >
-          <div className="container">
-            <div className="experience-top reveal">
-              <span className="eyebrow">
-                <span className="tiny-line" /> DO PRIMEIRO OLÁ AO SEU MOMENTO
-              </span>
-              <h2 id="experience-title">
-                O cuidado começa
-                <br />
-                <em>antes do toque.</em>
-              </h2>
-              <p>Uma experiência feita de escuta, presença e atenção.</p>
-            </div>
-            <ol className="timeline">
-              {experience.map(([title, description], i) => (
-                <li className="reveal" key={title}>
-                  <span className="step-number">
-                    0{i + 1}
-                    <span />
-                  </span>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
-                </li>
-              ))}
-            </ol>
-            <div className="experience-cta">
-              <span>Seu próximo passo pode ser uma pausa.</span>
-              <Booking light>Vamos agendar seu momento?</Booking>
             </div>
           </div>
         </section>

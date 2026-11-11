@@ -156,22 +156,3 @@ export const faqs = [
     "Na Rua Domingos de Morais, 1061, conjunto 83, Vila Mariana, São Paulo – SP. Use o botão de rotas na seção de localização para planejar sua chegada.",
   ],
 ];
-
-export const experience = [
-  [
-    "Primeiro contato",
-    "Tudo começa com uma conversa pelo WhatsApp. Conte o que você está buscando.",
-  ],
-  [
-    "Escuta e atenção",
-    "Um momento para conversar sobre seus objetivos e as necessidades do atendimento.",
-  ],
-  [
-    "Cuidado individualizado",
-    "O atendimento considera a técnica escolhida e sua adequação a você.",
-  ],
-  [
-    "Depois do atendimento",
-    "Um espaço para dúvidas e orientações pertinentes ao cuidado realizado.",
-  ],
-];

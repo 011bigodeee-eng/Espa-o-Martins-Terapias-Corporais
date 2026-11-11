@@ -418,7 +418,7 @@ test("fotos uniformes e conteúdo centralizado no celular", async ({ page }) => 
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const width of [360, 390, 430]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const selector of [".hero-content", ".profile-copy", ".about-copy", ".therapy-copy", ".experience-top", ".faq-intro", ".location-info", ".footer"]) {
+    for (const selector of [".hero-content", ".profile-copy", ".about-copy", ".therapy-copy", ".faq-intro", ".location-info", ".footer"]) {
       expect(await page.locator(selector).first().evaluate(el => getComputedStyle(el).textAlign)).toBe("center");
     }
     const photo = page.locator(".profile-photo");
@@ -443,4 +443,10 @@ test("seção de regiões do corpo removida", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Costas", exact: true })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Ombros", exact: true })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Pernas e joelhos", exact: true })).toHaveCount(0);
+});
+
+test("seção de experiência e seus links removidos", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#experiencia, .timeline")).toHaveCount(0);
+  await expect(page.locator('a[href="#experiencia"]')).toHaveCount(0);
 });
