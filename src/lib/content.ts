@@ -83,6 +83,15 @@ export const therapies = [
     theme: "cups",
   },
   {
+    id: "pedras-quentes",
+    name: "Pedras quentes",
+    category: "Pausa & bem-estar",
+    message: "a massagem com pedras quentes",
+    description: "Pedras quentes são pedras vulcânicas de basalto, que retém calor por muito tempo, sendo utilizadas principalmente na massagem, combinando termoterapia e massoterapia.",
+    detail: "Pedras quentes são pedras vulcânicas de basalto, que retém calor por muito tempo, sendo utilizadas principalmente na massagem, combinando termoterapia e massoterapia.",
+    theme: "stones",
+  },
+  {
     id: "miofascial",
     name: "Liberação miofascial",
     category: "Mobilidade & conforto",

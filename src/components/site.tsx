@@ -182,7 +182,7 @@ export default function Site() {
       !["miofascial", "biomecanica"].includes(t.id) &&
       (filter === "Todas" ||
         (filter === "Relaxamento"
-          ? ["relaxante", "reflexologia"].includes(t.id)
+          ? ["relaxante", "reflexologia", "pedras-quentes"].includes(t.id)
           : filter === "Movimento"
             ? t.id === "pernas"
             : ["instrumental", "shiatsu", "ventosaterapia"].includes(t.id))),
