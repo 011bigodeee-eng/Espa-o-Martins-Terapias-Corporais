@@ -254,8 +254,8 @@ export default function Site() {
             </div>
             <h1 id="hero-title">
               Cuidar de <em>você</em>
-              <br />é o que nos
-              <br />
+              {" "}<br />é o que nos
+              {" "}<br />
               <em>move.</em>
             </h1>
             <p>
@@ -335,7 +335,7 @@ export default function Site() {
               <Hand size={26} strokeWidth={1.5} />
               <span>
                 CUIDADO
-                <br />
+                {" "}<br />
                 INDIVIDUAL
               </span>
             </div>
@@ -386,15 +386,15 @@ export default function Site() {
                 </span>
                 <h2 id="therapies-title">
                   Diferentes caminhos.
-                  <br />
+                  {" "}<br />
                   <em>O mesmo cuidado.</em>
                 </h2>
               </div>
               <p>
                 Seu corpo tem uma história.
-                <br />
+                {" "}<br />
                 Conheça possibilidades de cuidado
-                <br />
+                {" "}<br />
                 que respeitam o seu momento.
               </p>
             </div>
@@ -512,13 +512,13 @@ export default function Site() {
               </span>
               <h2 id="gallery-title">
                 Aconchego que se vê.
-                <br />
+                {" "}<br />
                 <em>Cuidado que se sente.</em>
               </h2>
             </div>
             <p>
               Três olhares para um lugar
-              <br />
+              {" "}<br />
               feito para receber você.
             </p>
           </div>
@@ -560,7 +560,7 @@ export default function Site() {
             <span className="eyebrow">NOSSO COMPROMISSO</span>
             <h2 id="commitment-title">
               Confiança se constrói
-              <br />
+              {" "}<br />
               <em>com cuidado e transparência.</em>
             </h2>
             <p>
@@ -602,12 +602,12 @@ export default function Site() {
             </span>
             <h2 id="faq-title">
               Podemos
-              <br />
+              {" "}<br />
               <em>te ajudar?</em>
             </h2>
             <p>
               Cuidar também é deixar
-              <br />
+              {" "}<br />
               você à vontade para perguntar.
             </p>
             <a
@@ -654,19 +654,19 @@ export default function Site() {
             </span>
             <h2 id="location-title">
               Seu momento
-              <br />
+              {" "}<br />
               <em>tem endereço.</em>
             </h2>
             <p>
               Esperamos você em um espaço
-              <br />
+              {" "}<br />
               de acolhimento na Vila Mariana.
             </p>
             <address>
               <MapPin size={21} strokeWidth={1.4} />
               <span>
                 {business.address}
-                <br />
+                {" "}<br />
                 {business.neighborhood}
               </span>
             </address>
@@ -715,7 +715,7 @@ export default function Site() {
           <span className="eyebrow">SEU BEM-ESTAR MERECE ESSE TEMPO</span>
           <h2>
             Que tal começar
-            <br />
+            {" "}<br />
             <em>por você?</em>
           </h2>
           <Booking light>Quero agendar meu momento</Booking>
@@ -734,7 +734,7 @@ export default function Site() {
             <span className="eyebrow">VENHA NOS CONHECER</span>
             <p>
               {business.address}
-              <br />
+              {" "}<br />
               {business.neighborhood}
             </p>
             <a href={whatsapp()} target="_blank" rel="noopener noreferrer">

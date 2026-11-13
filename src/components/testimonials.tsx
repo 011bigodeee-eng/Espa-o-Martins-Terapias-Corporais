@@ -23,7 +23,7 @@ export function Testimonials({ items }: { items: readonly Testimonial[] }) {
       </span>
       <h2 id="testimonials-title">
         Palavras de quem
-        <br />
+        {" "}<br />
         <em>viveu o cuidado.</em>
       </h2>
       <div className="testimonial-active" aria-live="polite" aria-atomic="true">

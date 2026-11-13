@@ -12,7 +12,7 @@ test("conteúdo, imagens, links de agendamento e SEO local", async ({
   });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Cuidar de vocêé o que nosmove.",
+    "Cuidar de você é o que nos move.",
   );
   await expect(page).toHaveTitle(/Terapias Corporais na Vila Mariana/);
   await expect(page.locator("html")).toHaveAttribute("lang", "pt-BR");
